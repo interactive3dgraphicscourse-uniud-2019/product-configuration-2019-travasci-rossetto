@@ -195,17 +195,18 @@ body{
 }
 
 #objectName{
-	font-size:2em;
+	font-size:1.7em;
 	float:left;
 	text-align:center;
-	margin-left:1em;
-	margin-bottom:0.3em;
+	margin-left:1.15em;
+	margin-bottom:0.345em;
 }
 
 #favorites{
 	height:2.5em;
 	float:left;
-	margin:1em;
+	margin-left:0.7em;
+	margin-top:0.7em;
 	margin-bottom:0em;
 }
 
@@ -410,6 +411,7 @@ body{
 	padding-top:0em;
 	box-sizing:border-box;
 	margin-left:0em;
+	text-align:justify;
 }
 
 #reviewsContainer{
@@ -489,6 +491,7 @@ body{
 	float:left;
 	clear:left;
 	color:rgba(115, 115, 115, 1);
+	text-align:justify;
 }
 
 #seeMoreReviews{
