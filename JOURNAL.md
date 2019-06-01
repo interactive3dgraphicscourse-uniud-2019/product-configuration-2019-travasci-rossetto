@@ -10,3 +10,10 @@ Completata la pagina web del negozio online fittizio.
 ![Pagina web completata](https://raw.githubusercontent.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/master/screenshots/Completata%20pagina%20web.PNG)
 
 - Stefano Travasci
+
+## Riempito il testo della pagina
+```02.06.2019 - 00:30```
+
+Sostituito il testo placeholder della pagina web con un testo appropriato al negozio immaginario e all'oggetto venduto.
+
+- Stefano Travasci
