@@ -357,9 +357,6 @@ body{
 }
 
 #canvas{
-	border-style:solid;
-	border-color:red;
-	border-width:1px;
 	border-top-left-radius:20px;
 	border-top-right-radius:20px;
 	clear:right;
@@ -505,4 +502,67 @@ body{
 	cursor:pointer;
 	text-decoration:underline;
 	color:black;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    padding: 0;
+	float:left;
+	clear:left;
+	margin-left:2.5%;
+	margin-top:1.5em;
+}
+
+#otherProducts{
+	float:left;
+	clear:left;
+	background-color:rgb(255,220,0,0.3);
+	margin-top:1em;
+	margin-left:3%;
+	padding:1em;
+	width:90%;
+	overflow:hidden;
+}
+
+#otherProductsTitle{
+	float:left;
+	clear:right;
+	font-size:1.2em;
+	font-weight:bold;
+	margin-right:70%;
+	color:#151515;
+	margin-left:0.3em;
+}
+
+.otherProductContainer{
+	float:left;
+	background-color:rgb(255,131,0,0.2);
+	padding:0.7em;
+	margin:0.5em;
+	border-radius:3px;	
+	color:rgba(115, 115, 115, 1);
+	margin-top:0.8em;
+	margin-bottom:0em;
+}
+
+.otherProductContainer:hover{
+	background-color:rgb(255,131,0,0.4);
+	cursor:pointer;
+	text-decoration:underline;
+	color:#151515;
+}
+
+.otherProductImage{
+	width:10em;
+	border-radius:2px;
+}
+
+.otherProductName{
+	text-align:center;
+	margin:0.1em;
+	font-size:0.9em;
+	font-weight:bold;
 }

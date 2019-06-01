@@ -45,7 +45,37 @@
 </script>
 </head>
 
-<body>
+<body  onLoad="var c = document.getElementById('canvas');
+var ctx = c.getContext('2d');
+
+
+ctx.beginPath();
+ctx.rect(0, 0, 915, 500);
+ctx.fillStyle = 'yellow';
+ctx.fill();
+
+ctx.beginPath();
+ctx.rect(200, 20, 150, 700);
+ctx.fillStyle = 'red';
+ctx.fill();
+
+ctx.beginPath();
+ctx.rect(500, 75, 400, 500);
+ctx.fillStyle = 'blue';
+ctx.fill(); 
+
+ctx.font = '20px Georgia';
+ctx.fillText('Hello World!', 10, 50);
+
+ctx.font = '30px Verdana';
+// Create gradient
+var gradient = ctx.createLinearGradient(0, 0, c.width, 0);
+gradient.addColorStop('0',' magenta');
+gradient.addColorStop('0.5', 'blue');
+gradient.addColorStop('1.0', 'red');
+// Fill with gradient
+ctx.fillStyle = gradient;
+ctx.fillText('Big smile!', 10, 90);">
 <div id="top_bar">
 <div id="top_bar_top">
 <img id="logo" src="images/Acme_logo.png">
@@ -147,6 +177,26 @@ Morbi facilisis, metus non congue ultricies, justo ligula fermentum massa, at fa
 </div>
 <div id="seeMoreReviews">Mostra altre recensioni</div>
 </div>
+</div>
+<hr align="center" width="95%"> 
+<div id="otherProducts">
+<div id="otherProductsTitle">Ti potrebbero interessare anche:</div>
+
+<div class="otherProductContainer">
+<img class="otherProductImage" src="images/coffeegrounds.jpg">
+<div class="otherProductName">Fondi di caff&#232;</div>
+</div>
+
+<div class="otherProductContainer">
+<img class="otherProductImage" src="images/chewinggum.jpg">
+<div class="otherProductName">Un chewinggum sfuso</div>
+</div>
+
+<div class="otherProductContainer">
+<img class="otherProductImage" src="images/spoonwithcup.jpg">
+<div class="otherProductName">Cucchiaio in una tazza</div>
+</div>
+
 </div>
 </body>
 </html>
