@@ -11,6 +11,7 @@ body{
 	overflow:hidden;
 	width:100%;
 	clear:right;
+	margin-bottom:0.5em;
 }
 
 #top_bar_top{
@@ -215,7 +216,7 @@ body{
 	margin-top:0;
 	text-align:justify;
 	clear:right;
-	margin-bottom:1.7em;
+	margin-bottom:1.5em;
 }
 
 #purchaseBox{
@@ -400,3 +401,108 @@ body{
 	background-color: #050505;
 }
 
+#descriptionAndReviewsContainer{
+	float:left;
+	margin-top:1.5em;
+}
+
+#longDescription{
+	float:left;
+	width:60%;
+	padding:1.5em;
+	padding-top:0em;
+	box-sizing:border-box;
+	margin-left:0em;
+}
+
+#reviewsContainer{
+	float:left;
+	width:39%;
+	background-color:rgb(255,131,0,0.3);
+	box-sizing:border-box;
+	padding:1em;
+	padding-top:0.8em;
+}
+
+#starsContainer{
+	float:left;
+	clear:left;
+	margin-left:0.7em;
+}
+
+#starsContainer .star{
+	height:1.9em;
+}
+
+.star{
+	height:1.7em;
+}
+
+#reviewTitle{
+	float:left;
+	clear:left;
+	font-weight:bold;
+	margin-left:1em;
+	font-size:1.2em;
+	margin-bottom:0.3em;
+}
+
+#reviewPreviewBlock{
+	float:left;
+	clear:left;
+	border-radius:2px;
+}
+
+.review{
+	font-size:0.8em;
+	background-color:rgb(255,255,255,0.4);
+	padding:0.5em;
+	margin:0.3em;
+	margin-bottom:1.2em;
+	box-sizing:border-box;
+	color:#151515;
+	overflow:hidden;
+	border-radius:2px;
+}
+
+.reviewName{
+	font-size:1.1em;
+	font-weight:bold;
+	float:left;
+	color:black;
+}
+
+.reviewName:hover{
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+.reviewAuthor{
+	float:left;
+	clear:left;
+	font-style:italic;
+}
+
+.reviewStars{
+	float:left;
+	clear:left;
+}
+
+.reviewText{
+	float:left;
+	clear:left;
+	color:rgba(115, 115, 115, 1);
+}
+
+#seeMoreReviews{
+	float:left;
+	clear:left;
+	font-weight:bold;
+	font-size:0.9em;
+	color:#151515;
+}
+#seeMoreReviews:hover{
+	cursor:pointer;
+	text-decoration:underline;
+	color:black;
+}
