@@ -566,3 +566,18 @@ hr {
 	font-size:0.9em;
 	font-weight:bold;
 }
+
+#footer{
+	float:left;
+	width:100%;
+	box-sizing:border-box;
+	text-align:center;
+	background: rgba(115, 115, 115, 1);
+	margin-top:1.7em;
+	padding:0.7em;
+}
+
+#AcmeName:hover{
+	text-decoration:underline;
+	cursor:pointer;
+}
