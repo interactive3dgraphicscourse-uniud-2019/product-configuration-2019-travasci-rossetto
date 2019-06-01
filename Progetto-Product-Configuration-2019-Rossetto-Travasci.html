@@ -3,7 +3,46 @@
 <html>
 <head>
 <link href="resources/style.css" type="text/css" rel="stylesheet"/>
+<link rel="icon" href="images/Acme_logo.png" type="image.png"/>
 <title>ACME shop - *nome prodotto*</title>
+<script>
+	isFavorite=false;
+	 function favoriteAction(){
+		if(isFavorite){
+			document.getElementById("favorites").src="images/Add_to_favorites.png";
+			document.getElementById("favorites").title="Aggiungi ai preferiti";
+		}else{
+			document.getElementById("favorites").src="images/Added_to_favorites.png";
+			document.getElementById("favorites").title="Rimuovi dai preferiti";
+		}
+		isFavorite=!isFavorite;
+	 }
+	 
+	 selectedMaterial=1;
+	 function changeMaterial(n){
+		var selected, other1, other2;
+		if(n==1){
+			selected=document.getElementById("materialButton1");
+			other1=document.getElementById("materialButton2");
+			other2=document.getElementById("materialButton3");
+		}else if(n==2){
+			other1=document.getElementById("materialButton1");
+			selected=document.getElementById("materialButton2");
+			other2=document.getElementById("materialButton3");
+		}else{
+			other1=document.getElementById("materialButton1");
+			other2=document.getElementById("materialButton2");
+			selected=document.getElementById("materialButton3");
+		}
+		selected.style.color="white";
+		other1.style.color="#707070";
+		other2.style.color="#707070";
+		selected.style.backgroundColor="#050505";
+		other1.style.backgroundColor="#242424";
+		other2.style.backgroundColor="#242424";
+		selectedMaterial=n;
+	 }
+</script>
 </head>
 
 <body>
@@ -36,6 +75,38 @@
 <div id="accountLinks" class="genericTopBarLinks">
 <span class="accountLink">Crea account</span>|<span class="accountLink">Login</span>
 </div>
+</div>
+</div>
+<div id="mainContainer">
+<div id="titleContainer">
+<h1 id="objectName">Nome dell'articolo</h1>
+<img id="favorites" src="images/Add_to_favorites.png" onClick="favoriteAction()" title="Aggiungi ai preferiti">
+</div>
+<div id="briefDescription">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt sollicitudin elit, vel interdum sapien imperdiet sit amet. Sed laoreet consectetur orci et facilisis. Nulla at condimentum lacus. Pellentesque semper vitae justo quis pulvinar. Vestibulum id sapien in justo pharetra sollicitudin. In hendrerit efficitur ipsum et elementum. Cras mattis molestie tempor. Nunc rutrum tristique velit, nec dictum justo euismod eget. Nullam pulvinar elit nunc, ut eleifend elit fringilla ac.
+</div>
+<div id="purchaseBox">
+<div id="priceBox"><span id="oldPrice">99,99&#8364;</span><span id="discountedPrice">59,99&#8364;</span></div>
+<span id="shippingPrice" onClick="alert('La spedizione &#232; gratuita per tutti gli ordini sopra i 35&#8364;.');">Spedizione gratuita</span>
+<div id="numberBox">
+<INPUT TYPE="button" ID="plusNumberOfItems" VALUE="+" onClick="document.getElementById('numberOfItems').value=parseInt(document.getElementById('numberOfItems').value)+1;">
+<input type="text" id="numberOfItems" value="1">
+<INPUT TYPE="button" ID="minusNumberOfItems" VALUE="-" onClick="var v=document.getElementById('numberOfItems').value;if(v>1)document.getElementById('numberOfItems').value-=1;">
+</div>
+<div id="buyButtonsContainer">
+<INPUT TYPE="button" class="purchaseButton" ID="addToCart" VALUE="Aggiungi al carrello" onClick="document.getElementById('emptyCart').innerHTML=parseInt(document.getElementById('emptyCart').innerHTML)+parseInt(document.getElementById('numberOfItems').value);">
+<INPUT TYPE="button" class="purchaseButton" ID="buyNow" VALUE="Compra subito" onClick="alert('Pacco in arrivo...');">
+</div>
+</div>
+</div>
+<div id="canvasContainer">
+<canvas id="canvas" width="915" height="500"></canvas>
+<div id="canvasButtonsContainer">
+<span id="canvasButtonTitle">Scegli il materiale:</span>
+<INPUT id="materialButton1" class="canvasButton" TYPE="button" VALUE="Materiale uno" onClick="changeMaterial(1);">
+<INPUT id="materialButton2" class="canvasButton" TYPE="button" VALUE="Materiale due" onClick="changeMaterial(2);">
+<INPUT id="materialButton3" class="canvasButton" TYPE="button" VALUE="Materiale tre" onClick="changeMaterial(3);">
+<script>changeMaterial(1);</script>
 </div>
 </div>
 </body>

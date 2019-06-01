@@ -10,6 +10,7 @@ body{
 	margin:0px;
 	overflow:hidden;
 	width:100%;
+	clear:right;
 }
 
 #top_bar_top{
@@ -153,7 +154,7 @@ body{
 
 #linkArray{
 	float:left;
-	margin-left:7.5em;
+	margin-left:7.1em;
 }
 
 .arrayLink{
@@ -180,3 +181,222 @@ body{
 	cursor:pointer;
 	color:black;
 }
+
+#mainContainer{
+	float:left;
+	width:30%;
+}
+
+#titleContainer{
+	width:100%;
+	float:left;
+	clear:right;
+}
+
+#objectName{
+	font-size:2em;
+	float:left;
+	text-align:center;
+	margin-left:1em;
+	margin-bottom:0.3em;
+}
+
+#favorites{
+	height:2.5em;
+	float:left;
+	margin:1em;
+	margin-bottom:0em;
+}
+
+#briefDescription{
+	float:left;
+	margin:2em;
+	margin-right:0.5em;
+	margin-top:0;
+	text-align:justify;
+	clear:right;
+	margin-bottom:1.7em;
+}
+
+#purchaseBox{
+	background-color:#151515;
+	float:left;
+	border-radius:30px;
+	margin-left:2em;
+	width:23em;
+}
+
+#priceBox{
+	float:left;
+	margin-left:2.5em;
+	margin-top:1.1em;
+}
+
+#oldPrice{
+	text-decoration: line-through;
+	font-size:1.6em;
+	color:#a7a7a7;
+}
+
+#discountedPrice{
+	color:#fa2b0a;
+	font-size:2.4em;
+	margin-left:0.8em;
+}
+
+#shippingPrice{
+	float:left;
+	clear:left;
+	margin-left:7em;
+	color:#616161;
+	text-decoration:underline;
+}
+
+#shippingPrice:hover{
+	color:#b6b6b6;
+	cursor:help;
+}
+
+#numberBox{
+	float:left;
+	clear:left;
+	margin:1.5em;
+	margin-left:2em;
+	width:10%;
+}
+
+#plusNumberOfItems{
+	float:left;
+	border-style:hidden;
+	width:100%;
+	font-size:1.4em;
+	border-top-right-radius:10px;
+	border-top-left-radius:10px;
+	background-color:white;
+	color:#151515;
+}
+
+#plusNumberOfItems:hover{
+	background-color:#a7a7a7;
+}
+
+#numberOfItems{
+	float:left;
+	clear:left;
+	width:100%;	
+	box-sizing:border-box;
+	text-align:center;
+	font-size:1.4em;
+	background-color:white;
+	border-style:hidden;
+	color:#151515;
+}
+
+#minusNumberOfItems{
+	float:left;
+	clear:left;
+	border-style:hidden;
+	width:100%;
+	font-size:1.4em;
+	border-bottom-right-radius:10px;
+	border-bottom-left-radius:10px;
+	background-color:white;
+	color:#151515;
+}
+
+#minusNumberOfItems:hover{
+	background-color:#a7a7a7;
+}
+
+#buyButtonsContainer{
+	float:left;
+	width:60%;
+	margin-top:1.5em;
+}
+
+.purchaseButton{
+	float:left;
+	clear:left;
+	border-style:hidden;
+	width:100%;
+	text-align:center;
+	margin:1.1em;
+	margin-top:0;
+	border-radius:10px;
+	font-size:1.2em;
+	margin-left:1em;
+	padding:0.2em;
+}
+
+#addToCart{
+	background-color:#fa2b0a;
+	color:white;
+}
+
+#addToCart:hover{
+	background-color:#ff2300;
+	cursor:pointer;
+}
+
+#buyNow{
+	margin-bottom:1.2em;
+	background-color:white;
+	color:#151515;
+}
+
+#buyNow:hover{
+	background-color:#dfdfdf;
+	cursor:pointer;
+}
+
+#canvasContainer{
+	float:right;
+	width:69%;
+	margin-top:1em;
+}
+
+#canvas{
+	border-style:solid;
+	border-color:red;
+	border-width:1px;
+	border-top-left-radius:20px;
+	border-top-right-radius:20px;
+	clear:right;
+	float:left;
+}
+
+#canvasButtonsContainer{
+	float:left;
+	border-bottom-left-radius:20px;
+	border-bottom-right-radius:20px;
+	height:4em;
+	width:915px;
+	background-color:rgba(115, 115, 115, 1);
+}
+
+#canvasButtonTitle{
+	float:left;
+	margin:1em;
+	margin-left:2em;
+	margin-right:0.5em;
+	font-size:1.3em;
+}
+
+.canvasButton{
+	float:left;
+	border-style:hidden;
+	margin:1em;
+	margin-top:0.6em;
+	background-color: #242424;
+	color:#707070;
+	border-radius:3px;
+	font-size:1.3em;
+	padding:0.3em;
+}
+
+.canvasButton:hover{
+	cursor:pointer;
+	color:white;
+	background-color: #050505;
+}
+
