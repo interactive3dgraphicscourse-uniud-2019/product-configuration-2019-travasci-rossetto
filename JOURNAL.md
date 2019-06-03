@@ -26,3 +26,12 @@ La scena contenente gli occhiali che era stata creata nel file main.html è stat
 ![Pagina web integrata](https://raw.githubusercontent.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/master/screenshots/integrata%20la%20scena.PNG)
 
 - Stefano Travasci
+
+## Aggiunto sfondo
+```04.06.2019 - 01:56```
+
+Aggiunto lo sfondo alla scena. In futuro questo sfondo sarà usato come environment map.
+
+![Pagina web integrata](https://raw.githubusercontent.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/master/screenshots/aggiunto%20sfondo.PNG)
+
+- Stefano Travasci
