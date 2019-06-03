@@ -12,6 +12,17 @@
 				renderer.setSize( 915, 500 );
 				renderer.setClearColor( 0xf0f0f0 );
 				camera.position.set( 0, 1, 30 );
+				
+				var loader = new THREE.CubeTextureLoader();
+				loader.setPath( 'images/Standard-Cube-Map/' );
+
+				var textureCube = loader.load( [
+					'px.png', 'nx.png',
+					'py.png', 'ny.png',
+					'pz.png', 'nz.png'
+				] );
+
+				scene.background = textureCube;
 
 				vs = document.getElementById("vertex").textContent;
 				fs = document.getElementById("fragment").textContent;
@@ -42,13 +53,14 @@
 						});
 						glasses.position.set(0, 1, 10);
 						glasses.scale.multiplyScalar(10);			// They're very little(?)
+						scene.rotation.y-=45*Math.PI/180;
 						scene.add(glasses);
 						renderer.render( scene, camera );
 					}
 				);
 
 				var lightMesh = new THREE.Mesh( new THREE.SphereGeometry(1, 16, 16), new THREE.MeshBasicMaterial ({color: 0xffff00, wireframe:true}));
-				lightMesh.position.set( 30.0, 15.0, 15.0 );
+				lightMesh.position.set( -30.0, 30.0, 25.0 );
 				uniforms.pointLightPosition.value = new THREE.Vector3(lightMesh.position.x,
 				lightMesh.position.y,
 				lightMesh.position.z);
