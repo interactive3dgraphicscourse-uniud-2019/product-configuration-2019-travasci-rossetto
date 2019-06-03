@@ -17,3 +17,12 @@ Completata la pagina web del negozio online fittizio.
 Sostituito il testo placeholder della pagina web con un testo appropriato al negozio immaginario e all'oggetto venduto.
 
 - Stefano Travasci
+
+## Integrata la scena nella pagina web
+```04.06.2019 - 00:52```
+
+La scena contenente gli occhiali che era stata creata nel file main.html è stata ora integrata nella pagina web del negozio online fittizio.
+
+![Pagina web integrata](https://raw.githubusercontent.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/master/screenshots/integrata%20la%20scena.PNG)
+
+- Stefano Travasci
