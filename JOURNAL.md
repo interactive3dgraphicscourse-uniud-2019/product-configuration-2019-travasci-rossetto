@@ -35,3 +35,12 @@ Aggiunto lo sfondo alla scena. In futuro questo sfondo sarà usato come environm
 ![Pagina web integrata](https://raw.githubusercontent.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/master/screenshots/aggiunto%20sfondo.PNG)
 
 - Stefano Travasci
+
+## Modello e codice di shading
+```04.06.2019 - 09:08```
+
+Aggiunto il modello. Ricalcolate normali e sistemati errori nel modello preso dal web. Aggiunto un codice basic di shading combinato (Lambertian + microfacet).
+
+model credits: https://free3d.com/3d-model/glasses-56919.html
+
+- Eric Rossetto
