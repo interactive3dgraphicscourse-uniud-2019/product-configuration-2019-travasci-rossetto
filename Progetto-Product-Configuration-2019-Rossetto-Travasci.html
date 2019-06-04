@@ -113,7 +113,7 @@
 
 				metalness = texture2D( metalnessMap, vUv ).r;
 
-				if( metalness == 1.0 ) {
+				if( pow(metalness, 2.0) == 1.0 ) {
 					// It's a metal!
 
 					cdiff = vec3( 0.0, 0.0, 0.0 );

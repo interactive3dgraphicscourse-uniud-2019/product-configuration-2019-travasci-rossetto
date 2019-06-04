@@ -73,15 +73,16 @@ function Start() {
 
 				glasses.children[i].geometry.computeVertexNormals();
 			}
+			
 			glasses.position.set(0, 10, 10);
-			glasses.scale.multiplyScalar(10);			
+			glasses.scale.multiplyScalar(15);			
 			scene.rotation.y -= 45 * Math.PI/180;
 			scene.add(glasses);
 			renderer.render( scene, camera );
 		});
 
 	var lightMesh = new THREE.Mesh( new THREE.SphereGeometry(1, 16, 16), new THREE.MeshBasicMaterial ({color: 0xffff00, wireframe:true}));
-	lightMesh.position.set( -30.0, 30.0, 50.0 );
+	lightMesh.position.set( 30.0, 30.0, -50.0 );
 	uniforms_plastic.pointLightPosition.value = new THREE.Vector3(lightMesh.position.x,
 		lightMesh.position.y,
 		lightMesh.position.z);
