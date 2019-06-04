@@ -1,8 +1,8 @@
 var scene, renderer, camera, stats;
 
-var colorMap = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_col.jpg');
+var diffuseMap = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_col.jpg');
 var roughnessMap = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_rgh.jpg');
-var metalnessMap = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_met.jpg');
+var specularMap = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_met.jpg');
 var blackMap = new THREE.TextureLoader().load('./texture/met_BLACK.jpg');
 
 var uniforms_plastic = {
@@ -10,14 +10,16 @@ var uniforms_plastic = {
 	roughness: {type: "f", value: 0.2},
 	pointLightPosition:	{ type: "v3", value: new THREE.Vector3( 0.0, 0.0, 0.0 ) },
 	clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },
+	metalness:	{ type: "f", value: 0.0 },
 };
 
 var uniforms_metal = {
 	pointLightPosition:	{ type: "v3", value: new THREE.Vector3() },
 	clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },
 	roughnessMap: { type: "t", value: roughnessMap },
-	colorMap: { type: "t", value: colorMap },
-	metalnessMap: { type: "t", value: blackMap },
+	diffuseMap: { type: "t", value: diffuseMap },
+	specularMap: { type: "t", value: blackMap },
+	metalness:	{ type: "f", value: 1.0 }
 };
 
 function Start() {
@@ -73,7 +75,7 @@ function Start() {
 
 				glasses.children[i].geometry.computeVertexNormals();
 			}
-			
+
 			glasses.position.set(0, 10, 10);
 			glasses.scale.multiplyScalar(15);			
 			scene.rotation.y -= 45 * Math.PI/180;

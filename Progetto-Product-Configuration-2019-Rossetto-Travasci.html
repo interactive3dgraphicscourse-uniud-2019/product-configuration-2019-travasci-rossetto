@@ -67,11 +67,11 @@
 			uniform vec3 pointLightPosition; // in world space
 			uniform vec3 clight;
 			uniform sampler2D roughnessMap;
-			uniform sampler2D metalnessMap;
-			uniform sampler2D colorMap;
+			uniform sampler2D specularMap;
+			uniform sampler2D diffuseMap;
+			uniform float metalness;
 
 			float roughness;
-			float metalness;
 			vec3 cspec;
 			vec3 cdiff;
 			
@@ -109,30 +109,24 @@
 				float vDoth = max(dot( v, h ),0.000001);
 				float nDotv = max(dot( n, v ),0.000001);
 
-				roughness = texture2D( roughnessMap, vUv ).r;
-
-				metalness = texture2D( metalnessMap, vUv ).r;
-
-				if( pow(metalness, 2.0) == 1.0 ) {
-					// It's a metal!
-
-					cdiff = vec3( 0.0, 0.0, 0.0 );
-					cspec = texture2D( colorMap, vUv ).rgb;
+				if( metalness == 1.0 ) {
+					cdiff = vec3( 0.0 );
+					cspec = texture2D( diffuseMap, vUv).rgb;
 				} else {
-					// It's a dieletric
-
-					cdiff = texture2D( colorMap, vUv ).rgb;
-					cspec = vec3( 0.04, 0.04, 0.04);
+					cdiff = texture2D( diffuseMap, vUv).rgb;
+					cspec = vec3( 0.04 );
 				}
+		
+				cdiff = pow( cdiff, vec3(2.2));
+				cspec = pow( cspec, vec3(2.2));
 
-				cspec = pow( cspec, vec3(2.2) );
-				cdiff = pow( cdiff, vec3(2.2) );
+				roughness = texture2D( roughnessMap, vUv).r; 
 
 				vec3 fresnel = FSchlick(lDoth);
 				vec3 BRDF = (vec3(1.0)-fresnel)*cdiff/PI + fresnel*GSmith(nDotv,nDotl)*DGGX(nDoth,roughness*roughness)/
 					(4.0*nDotl*nDotv);
 				vec3 outRadiance = PI * clight * nDotl * BRDF;
-				// gamma encode the final value
+				
 				gl_FragColor = vec4(pow( outRadiance, vec3(1.0/2.2)), 1.0);
 			}
 </script>
