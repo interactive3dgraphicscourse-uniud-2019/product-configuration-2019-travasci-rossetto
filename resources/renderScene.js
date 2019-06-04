@@ -49,30 +49,30 @@ function Start() {
 	// instantiate a loader
 	var loader = new THREE.OBJLoader();
 	loader.load(
-		"../models/glasses/Glasses_v2.21.obj", 
+		"../models/glasses/Glasses_v2.22.obj", 
 		function( object ) {
 						
 		//console.log(object);  // debug
 
 			glasses = object;
-			glasses.children[0].material = new THREE.ShaderMaterial({
-				uniforms: uniforms_metal, 
-				vertexShader: vs, 
-				fragmentShader: fs
-			});
 
-			glasses.children[1].material = new THREE.ShaderMaterial({
-				uniforms: uniforms_metal, 
-				vertexShader: vs, 
-				fragmentShader: fs
-			});
+			for( i=0; i<3; ++i ) {
+				if(i==0) {
+					glasses.children[i].material = new THREE.ShaderMaterial({
+						uniforms: uniforms_metal, 
+						vertexShader: vs, 
+						fragmentShader: fs
+					});
+				} else {
+					glasses.children[i].material = new THREE.ShaderMaterial({
+						uniforms: uniforms_plastic, 
+						vertexShader: vs, 
+						fragmentShader: fs
+					});
+				}
 
-			glasses.children[2].material = new THREE.ShaderMaterial({
-				uniforms: uniforms_metal, 
-				vertexShader: vs, 
-				fragmentShader: fs
-			});
-
+				glasses.children[i].geometry.computeVertexNormals();
+			}
 			glasses.position.set(0, 10, 10);
 			glasses.scale.multiplyScalar(10);			
 			scene.rotation.y -= 45 * Math.PI/180;
