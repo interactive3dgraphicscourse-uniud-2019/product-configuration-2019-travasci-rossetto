@@ -48,24 +48,33 @@
 	 }
 </script>
 <script type="text/x-glsl" id="vertex">
-varying vec3 vNormal;
+			varying vec3 vNormal;
 			varying vec3 vPosition;
+			varying vec2 vUv;
 
 			void main() {
 				vec4 vPos = modelViewMatrix * vec4( position, 1.0 );
 				vPosition = vPos.xyz;
 				vNormal = normalMatrix * normal;
+				vUv = uv;
 				gl_Position = projectionMatrix * vPos;
 			}
 </script>
 <script type="text/x-glsl" id="fragment">
 			varying vec3 vNormal;
 			varying vec3 vPosition;
+			varying vec2 vUv;
 			uniform vec3 pointLightPosition; // in world space
 			uniform vec3 clight;
-			uniform vec3 cspec;
-			uniform vec3 cdiff;
-			uniform float roughness;
+			uniform sampler2D roughnessMap;
+			uniform sampler2D metalnessMap;
+			uniform sampler2D colorMap;
+
+			float roughness;
+			float metalness;
+			vec3 cspec;
+			vec3 cdiff;
+			
 			const float PI = 3.14159;
 
 			vec3 FSchlick(float lDoth) {
@@ -99,6 +108,19 @@ varying vec3 vNormal;
 				float nDoth = max(dot( n, h ),0.000001);
 				float vDoth = max(dot( v, h ),0.000001);
 				float nDotv = max(dot( n, v ),0.000001);
+
+				roughness = texture2D( roughnessMap, vUv ).r;
+
+				metalness = texture2D( metalnessMap, vUv ).r;
+
+				if( metalness == 1.0 ) {
+					// It's a metal!
+
+					cdiff = vec3(0);
+					cspec = texture2D( colorMap, vUv ).rgb;
+					cspec = pow( cspec, vec3(2.2) );
+				}
+
 				vec3 fresnel = FSchlick(lDoth);
 				vec3 BRDF = (vec3(1.0)-fresnel)*cdiff/PI + fresnel*GSmith(nDotv,nDotl)*DGGX(nDoth,roughness*roughness)/
 					(4.0*nDotl*nDotv);

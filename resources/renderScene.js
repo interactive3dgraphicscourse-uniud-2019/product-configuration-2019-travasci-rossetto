@@ -1,5 +1,25 @@
 var scene, renderer, camera, stats;
 
+var colorMap = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_col.jpg');
+var roughnessMap = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_rgh.jpg');
+var metalnessMap = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_met.jpg');
+var blackMap = new THREE.TextureLoader().load('./texture/met_BLACK.jpg');
+
+var uniforms_plastic = {
+	cspec:	{ type: "v3", value: new THREE.Vector3( 0.78, 0.0, 0.0 ) },
+	roughness: {type: "f", value: 0.2},
+	pointLightPosition:	{ type: "v3", value: new THREE.Vector3( 0.0, 0.0, 0.0 ) },
+	clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },
+};
+
+var uniforms_metal = {
+	pointLightPosition:	{ type: "v3", value: new THREE.Vector3() },
+	clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },
+	roughnessMap: { type: "t", value: roughnessMap },
+	colorMap: { type: "t", value: colorMap },
+	metalnessMap: { type: "t", value: blackMap },
+};
+
 function Start() {
 
 	scene = new THREE.Scene();
@@ -26,41 +46,47 @@ function Start() {
 	vs = document.getElementById("vertex").textContent;
 	fs = document.getElementById("fragment").textContent;
 
-	var uniforms = {
-		cdiff:	{ type: "v3", value: new THREE.Vector3( 0.7, 0.0, 0.0 ) },
-		pointLightPosition:	{ type: "v3", value: new THREE.Vector3() },
-		clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },
-		cspec:	{ type: "v3", value: new THREE.Vector3( 0.04, 0.04, 0.3 ) },
-		roughness:	{ type: "f", value: 0.5 },
-	};
-
 	// instantiate a loader
 	var loader = new THREE.OBJLoader();
 	loader.load(
-		"../models/glasses/Glasses_v2.2.obj", 
+		"../models/glasses/Glasses_v2.21.obj", 
 		function( object ) {
 						
 		//console.log(object);  // debug
 
-		glasses = object;
-		glasses.traverse( function (child) {
-			if( child instanceof THREE.Mesh ) {
-				child.geometry.computeVertexNormals();
-				// apply this material to all the meshes in the OBJ
-					child.material = new THREE.ShaderMaterial({uniforms: uniforms, vertexShader: vs, fragmentShader: fs});
-				};
+			glasses = object;
+			glasses.children[0].material = new THREE.ShaderMaterial({
+				uniforms: uniforms_metal, 
+				vertexShader: vs, 
+				fragmentShader: fs
 			});
-			glasses.position.set(0, 1, 10);
-			glasses.scale.multiplyScalar(10);			// They're very little(?)
-			scene.rotation.y-=45*Math.PI/180;
+
+			glasses.children[1].material = new THREE.ShaderMaterial({
+				uniforms: uniforms_metal, 
+				vertexShader: vs, 
+				fragmentShader: fs
+			});
+
+			glasses.children[2].material = new THREE.ShaderMaterial({
+				uniforms: uniforms_metal, 
+				vertexShader: vs, 
+				fragmentShader: fs
+			});
+
+			glasses.position.set(0, 10, 10);
+			glasses.scale.multiplyScalar(10);			
+			scene.rotation.y -= 45 * Math.PI/180;
 			scene.add(glasses);
 			renderer.render( scene, camera );
-		}
-	);
+		});
 
 	var lightMesh = new THREE.Mesh( new THREE.SphereGeometry(1, 16, 16), new THREE.MeshBasicMaterial ({color: 0xffff00, wireframe:true}));
-	lightMesh.position.set( -30.0, 30.0, 25.0 );
-	uniforms.pointLightPosition.value = new THREE.Vector3(lightMesh.position.x,
+	lightMesh.position.set( -30.0, 30.0, 50.0 );
+	uniforms_plastic.pointLightPosition.value = new THREE.Vector3(lightMesh.position.x,
+		lightMesh.position.y,
+		lightMesh.position.z);
+
+	uniforms_metal.pointLightPosition.value = new THREE.Vector3(lightMesh.position.x,
 		lightMesh.position.y,
 		lightMesh.position.z);
 
