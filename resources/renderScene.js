@@ -8,13 +8,6 @@ var specularMapMetal = new THREE.TextureLoader().load('./texture/Metal_Bare_se2a
 var normalMapMetal = new THREE.TextureLoader().load('./texture/Metal_Bare_se2abbvc_4K_surface_ms/se2abbvc_4K_Normal.jpg');
 var displacementMapMetal = new THREE.TextureLoader().load('./texture/Metal_Bare_se2abbvc_4K_surface_ms/se2abbvc_4K_Displacement.jpg');
 
-var diffuseMapMetal = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_col.jpg');
-var roughnessMapMetal = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_rgh.jpg');
-var specularMapMetal = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_met.jpg');
-var normalMapMetal = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_nrm.jpg');
-var displacementMapMetal = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_disp.jpg');
-
-
 //Wood texture (material #2)
 // ANISOTROPIC FILTERS LACKING
 var diffuseMapWood = new THREE.TextureLoader().load('./texture/[4K]Wood16/Wood16_col.jpg');

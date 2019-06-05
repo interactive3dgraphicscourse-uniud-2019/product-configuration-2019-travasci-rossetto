@@ -107,20 +107,15 @@
 				float nDoth = max(dot( n, h ),0.000001);
 				float vDoth = max(dot( v, h ),0.000001);
 				float nDotv = max(dot( n, v ),0.000001);
-				if( metalness == 1.0 ) {
-					cdiff = vec3( 0.0 );
-					cspec = texture2D( diffuseMap, vUv).rgb;
-				} else {
-					cdiff = texture2D( diffuseMap, vUv).rgb;
-					cspec = vec3( 0.04 );
-				}
+				
+				cdiff = texture2D( diffuseMap, vUv).rgb;
+				cspec = texture2D( specularMap, vUv).rgb;
 		
 				cdiff = pow( cdiff, vec3(2.2));
 				cspec = pow( cspec, vec3(2.2));
 				roughness = texture2D( roughnessMap, vUv).r; 
 				vec3 fresnel = FSchlick(lDoth);
-				vec3 BRDF = (vec3(1.0)-fresnel)*cdiff/PI + fresnel*GSmith(nDotv,nDotl)*DGGX(nDoth,roughness*roughness)/
-					(4.0*nDotl*nDotv);
+				vec3 BRDF = (vec3(1.0)-fresnel)*cdiff/PI + fresnel*GSmith(nDotv,nDotl)*DGGX(nDoth,roughness*roughness)/(4.0*nDotl*nDotv);
 				vec3 outRadiance = PI * clight * nDotl * BRDF;
 				
 				gl_FragColor = vec4(pow( outRadiance, vec3(1.0/2.2)), 1.0);
