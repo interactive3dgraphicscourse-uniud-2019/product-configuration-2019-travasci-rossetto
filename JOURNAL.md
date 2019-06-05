@@ -41,8 +41,6 @@ Aggiunto lo sfondo alla scena. In futuro questo sfondo sarà usato come environm
 
 Aggiunto il modello. Ricalcolate normali e sistemati errori nel modello preso dal web. Aggiunto un codice basic di shading combinato (Lambertian + microfacet).
 
-model credits: https://free3d.com/3d-model/glasses-56919.html
-
 - Eric Rossetto
 
 ## Modello e codice di shading
@@ -50,7 +48,7 @@ model credits: https://free3d.com/3d-model/glasses-56919.html
 
 Cambiato modello e aggiunta un prima versione di shading per materiali metallici.
 
-model credits:  -- DA AGGIUNGERE -- 
+model credits:  https://www.blendswap.com/blends/view/70347
 
 ![Occhiali](https://raw.githubusercontent.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/master/screenshots/glasses%20first%20render.PNG)
 

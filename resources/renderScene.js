@@ -1,17 +1,20 @@
 var scene, renderer, camera, stats;
 
+// ANISOTROPIC FILTERS LACKING
 var diffuseMap = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_col.jpg');
 var roughnessMap = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_rgh.jpg');
 var specularMap = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_met.jpg');
 var normalMap = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_nrm.jpg');
-var blackMap = new THREE.TextureLoader().load('./texture/met_BLACK.jpg');
 var displacementMap = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_disp.jpg');
 
 var uniforms_plastic = {
-	cspec:	{ type: "v3", value: new THREE.Vector3( 0.78, 0.0, 0.0 ) },
-	roughness: {type: "f", value: 0.2},
 	pointLightPosition:	{ type: "v3", value: new THREE.Vector3( 0.0, 0.0, 0.0 ) },
 	clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },
+	roughnessMap: { type: "t", value: roughnessMap },
+	diffuseMap: { type: "t", value: diffuseMap },
+	specularMap: { type: "t", value: specularMap },
+	displacementMap: { type: "t", value: displacementMap },
+	normalMap: { type: "t", value: normalMap },
 	metalness:	{ type: "f", value: 0.0 },
 };
 
@@ -20,10 +23,10 @@ var uniforms_metal = {
 	clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },
 	roughnessMap: { type: "t", value: roughnessMap },
 	diffuseMap: { type: "t", value: diffuseMap },
-	specularMap: { type: "t", value: blackMap },
+	specularMap: { type: "t", value: specularMap },
 	displacementMap: { type: "t", value: displacementMap },
 	normalMap: { type: "t", value: normalMap },
-	metalness:	{ type: "f", value: 1.0 }
+	metalness:	{ type: "f", value: 1.0 },
 };
 
 function Start() {
@@ -32,7 +35,6 @@ function Start() {
 	camera = new THREE.PerspectiveCamera( 75, 915 / 500, 0.1, 1000 );
 	renderer = new THREE.WebGLRenderer( { canvas: canvas, antialias: true} );
 	var controls = new THREE.OrbitControls( camera, document.getElementById("canvas") );
-	var glasses = new THREE.Mesh();
 
 	renderer.setSize( 915, 500 );
 	renderer.setClearColor( 0xf0f0f0 );
@@ -55,7 +57,7 @@ function Start() {
 	loadObj();
 
 	var lightMesh = new THREE.Mesh( new THREE.SphereGeometry(1, 16, 16), new THREE.MeshBasicMaterial ({color: 0xffff00, wireframe:true}));
-	lightMesh.position.set( -30.0, 30.0, 50.0 );
+	lightMesh.position.set( -30.0, 60.0, 50.0 );
 	uniforms_plastic.pointLightPosition.value = new THREE.Vector3(lightMesh.position.x,
 		lightMesh.position.y,
 		lightMesh.position.z);
@@ -105,6 +107,8 @@ function Start() {
 					}
 				});
 
+				glasses.scale.multiplyScalar( 2 );
+				glasses.rotation.y -= 65 * Math.PI/180;
 				scene.add( glasses );
 			}
 		);
