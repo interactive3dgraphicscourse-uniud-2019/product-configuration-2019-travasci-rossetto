@@ -3,7 +3,9 @@ var scene, renderer, camera, stats;
 var diffuseMap = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_col.jpg');
 var roughnessMap = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_rgh.jpg');
 var specularMap = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_met.jpg');
+var normalMap = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_nrm.jpg');
 var blackMap = new THREE.TextureLoader().load('./texture/met_BLACK.jpg');
+var displacementMap = new THREE.TextureLoader().load('./texture/[2K]Metal10/Metal10_disp.jpg');
 
 var uniforms_plastic = {
 	cspec:	{ type: "v3", value: new THREE.Vector3( 0.78, 0.0, 0.0 ) },
@@ -19,6 +21,8 @@ var uniforms_metal = {
 	roughnessMap: { type: "t", value: roughnessMap },
 	diffuseMap: { type: "t", value: diffuseMap },
 	specularMap: { type: "t", value: blackMap },
+	displacementMap: { type: "t", value: displacementMap },
+	normalMap: { type: "t", value: normalMap },
 	metalness:	{ type: "f", value: 1.0 }
 };
 
@@ -48,43 +52,10 @@ function Start() {
 	vs = document.getElementById("vertex").textContent;
 	fs = document.getElementById("fragment").textContent;
 
-	// instantiate a loader
-	var loader = new THREE.OBJLoader();
-	loader.load(
-		"../models/glasses/Glasses_v2.22.obj", 
-		function( object ) {
-						
-		//console.log(object);  // debug
-
-			glasses = object;
-
-			for( i=0; i<3; ++i ) {
-				if(i==0) {
-					glasses.children[i].material = new THREE.ShaderMaterial({
-						uniforms: uniforms_metal, 
-						vertexShader: vs, 
-						fragmentShader: fs
-					});
-				} else {
-					glasses.children[i].material = new THREE.ShaderMaterial({
-						uniforms: uniforms_plastic, 
-						vertexShader: vs, 
-						fragmentShader: fs
-					});
-				}
-
-				glasses.children[i].geometry.computeVertexNormals();
-			}
-
-			glasses.position.set(0, 10, 10);
-			glasses.scale.multiplyScalar(15);			
-			scene.rotation.y -= 45 * Math.PI/180;
-			scene.add(glasses);
-			renderer.render( scene, camera );
-		});
+	loadObj();
 
 	var lightMesh = new THREE.Mesh( new THREE.SphereGeometry(1, 16, 16), new THREE.MeshBasicMaterial ({color: 0xffff00, wireframe:true}));
-	lightMesh.position.set( 30.0, 30.0, -50.0 );
+	lightMesh.position.set( -30.0, 30.0, 50.0 );
 	uniforms_plastic.pointLightPosition.value = new THREE.Vector3(lightMesh.position.x,
 		lightMesh.position.y,
 		lightMesh.position.z);
@@ -100,6 +71,43 @@ function Start() {
 				stats.domElement.style.top = '0px';
 				document.body.appendChild( stats.domElement );*/
 
+	}
+
+	function loadObj() {
+		var loader = new THREE.OBJLoader();
+		loader.useIndices = true;
+		loader.load(
+			"../models/glasses.obj",
+
+			function( object ) {
+
+				glasses = new THREE.Object3D();
+				object.traverse( function(child) {
+					if( child instanceof THREE.Mesh ) {
+						geometry = child.geometry;
+						if( geometry == object.children[2].geometry ) {
+							// The glasses
+							// --- NOTICE: The material isn't final yet ---
+							var glassMaterial = new THREE.ShaderMaterial({ uniforms: uniforms_plastic, vertexShader: vs, fragmentShader: fs });
+							glassMaterial.vertexTangents = true;
+							glassMaterial.needsUpdate = true;
+							//console.log(glassMaterial);
+							mesh = new THREE.Mesh( geometry, glassMaterial );
+							glasses.add(mesh);
+						} else if( geometry != object.children[0].geometry ){
+							var frameMaterial = new THREE.ShaderMaterial({ uniforms: uniforms_metal, vertexShader: vs, fragmentShader: fs });
+							frameMaterial.vertexTangents = true;
+							frameMaterial.needsUpdate = true;
+							//console.log(frameMaterial);
+							mesh = new THREE.Mesh( geometry, frameMaterial );
+							glasses.add(mesh);
+						}
+					}
+				});
+
+				scene.add( glasses );
+			}
+		);
 	}
 
 	function Update() {
