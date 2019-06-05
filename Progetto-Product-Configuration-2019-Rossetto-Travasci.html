@@ -32,14 +32,17 @@
 			selected=document.getElementById("materialButton1");
 			other1=document.getElementById("materialButton2");
 			other2=document.getElementById("materialButton3");
+			changeGlassesMaterial(n);
 		}else if(n==2){
 			other1=document.getElementById("materialButton1");
 			selected=document.getElementById("materialButton2");
 			other2=document.getElementById("materialButton3");
+			changeGlassesMaterial(n);
 		}else{
 			other1=document.getElementById("materialButton1");
 			other2=document.getElementById("materialButton2");
 			selected=document.getElementById("materialButton3");
+			changeGlassesMaterial(n);
 		}
 		selected.style.color="white";
 		other1.style.color="#707070";
@@ -54,81 +57,56 @@
 			varying vec3 vNormal;
 			varying vec3 vPosition;
 			varying vec2 vUv;
-			varying vec3 vTangent;
-			varying vec3 vBitangent;
-			attribute vec4 tangent;
-
 			void main() {
 				vec4 vPos = modelViewMatrix * vec4( position, 1.0 );
 				vPosition = vPos.xyz;
-				vNormal = normalize(normalMatrix * normal);
-				vec3 objectTangent = vec3( tangent.xyz );
-				vec3 transformedTangent = normalMatrix * objectTangent;
-				vTangent = normalize( transformedTangent );
-				vBitangent = normalize( cross(vNormal, vTangent) * tangent.w );
-
+				vNormal = normalMatrix * normal;
+				vUv = uv;
 				gl_Position = projectionMatrix * vPos;
 			}
 </script>
 <script type="text/x-glsl" id="fragment">
 			varying vec3 vNormal;
 			varying vec3 vPosition;
-			varying vec3 vTangent;
-			varying vec3 vBitangent;
 			varying vec2 vUv;
 			uniform vec3 pointLightPosition; // in world space
 			uniform vec3 clight;
 			uniform sampler2D roughnessMap;
 			uniform sampler2D specularMap;
 			uniform sampler2D diffuseMap;
-			uniform sampler2D normalMap;
 			uniform float metalness;
-
 			float roughness;
 			vec3 cspec;
 			vec3 cdiff;
 			
 			const float PI = 3.14159;
-
 			vec3 FSchlick(float lDoth) {
 				return (cspec + (vec3(1.0)-cspec)*pow(1.0 - lDoth,5.0));
 			}
-
 			float DGGX(float nDoth, float alpha) {
 				float alpha2 = alpha*alpha;
 				float d = nDoth*nDoth*(alpha2-1.0)+1.0;
 				return (  alpha2 / (PI*d*d));
 			}
-
 			float G1(float dotProduct, float k) {
 				return (dotProduct / (dotProduct*(1.0-k) + k) );
 			}
-
 			float GSmith(float nDotv, float nDotl) {
 					float k = roughness*roughness;
 					return G1(nDotl,k)*G1(nDotv,k);
 			}
-
 			void main() {
 				vec4 lPosition = viewMatrix * vec4( pointLightPosition, 1.0 );
 				vec3 l = normalize(lPosition.xyz - vPosition.xyz);
-
-				vec3 normal = normalize( vNormal );
-				vec3 tangent = normalize( vTangent );
-				vec3 bitangent = normalize( vBitangent );
-				mat3 vTBN = mat3( tangent, bitangent, normal );
-				vec3 mapN = normalize(texture2D( normalMap, vUv ).xyz * 2.0 - 1.0);
-
-				vec3 n = normalize( vTBN * mapN );
-				vec3 v = normalize( -vPosition );
-				vec3 h = normalize( v + l );
+				vec3 n = normalize( vNormal );  // interpolation destroys normalization, so we have to normalize
+				vec3 v = normalize( -vPosition);
+				vec3 h = normalize( v + l);
 				// small quantity to prevent divisions by 0
 				float nDotl = max(dot( n, l ),0.000001);
 				float lDoth = max(dot( l, h ),0.000001);
 				float nDoth = max(dot( n, h ),0.000001);
 				float vDoth = max(dot( v, h ),0.000001);
 				float nDotv = max(dot( n, v ),0.000001);
-
 				if( metalness == 1.0 ) {
 					cdiff = vec3( 0.0 );
 					cspec = texture2D( diffuseMap, vUv).rgb;
@@ -139,9 +117,7 @@
 		
 				cdiff = pow( cdiff, vec3(2.2));
 				cspec = pow( cspec, vec3(2.2));
-
 				roughness = texture2D( roughnessMap, vUv).r; 
-
 				vec3 fresnel = FSchlick(lDoth);
 				vec3 BRDF = (vec3(1.0)-fresnel)*cdiff/PI + fresnel*GSmith(nDotv,nDotl)*DGGX(nDoth,roughness*roughness)/
 					(4.0*nDotl*nDotv);
@@ -211,15 +187,15 @@ Gli occhiali da faccia solari sono l&#39;ultimo ritrovato ACME nel campo dell&#3
 <canvas id="canvas" width="915" height="500"></canvas>
 <div id="canvasButtonsContainer">
 <span id="canvasButtonTitle">Scegli il materiale:</span>
-<INPUT id="materialButton1" class="canvasButton" TYPE="button" VALUE="Materiale uno" onClick="changeMaterial(1);">
-<INPUT id="materialButton2" class="canvasButton" TYPE="button" VALUE="Materiale due" onClick="changeMaterial(2);">
-<INPUT id="materialButton3" class="canvasButton" TYPE="button" VALUE="Materiale tre" onClick="changeMaterial(3);">
+<INPUT id="materialButton1" class="canvasButton" TYPE="button" VALUE="Metallo" onClick="changeMaterial(1);">
+<INPUT id="materialButton2" class="canvasButton" TYPE="button" VALUE="Legno" onClick="changeMaterial(2);">
+<INPUT id="materialButton3" class="canvasButton" TYPE="button" VALUE="Plastica blu" onClick="changeMaterial(3);">
 <script>changeMaterial(1);</script>
 </div>
 </div>
 <div id="descriptionAndReviewsContainer">
 <div id="longDescription">
-I nuovi <i>Occhiali da faccia solari ACME</i> sono disponibili in ben tre versioni diverse: Materialeuno, materialedue e materialetre. Le lenti disponibili invece sono sempre le stesse, ma questo solo perch&#233; sono di cos&igrave; ottima fattura che non avrebbe senso proporre delle alternative inferiori! Grazie a queste lenti sarete protetti dalla luce intensa, dagli invisibili ma pericolosissimi raggi ultravioletti e dai fastidiosi riflessi. Alcuni esempi di riflessi da cui protegge sono: riflessi sui pavimenti, riflessi sulle pozzanghere, riflessi sulle strade, riflessi sul mare, riflessi sui vetri, riflessi sui laghi, riflessi sui muri, riflessi sui fiumi, riflessi sull&#39;arredamento urbano, riflessi sulle cascate, riflessi sui cani e altro ancora.
+I nuovi <i>Occhiali da faccia solari ACME</i> sono disponibili in ben tre versioni diverse: Metallo, Legno e Plastica blu. Le lenti disponibili invece sono sempre le stesse, ma questo solo perch&#233; sono di cos&igrave; ottima fattura che non avrebbe senso proporre delle alternative inferiori! Grazie a queste lenti sarete protetti dalla luce intensa, dagli invisibili ma pericolosissimi raggi ultravioletti e dai fastidiosi riflessi. Alcuni esempi di riflessi da cui protegge sono: riflessi sui pavimenti, riflessi sulle pozzanghere, riflessi sulle strade, riflessi sul mare, riflessi sui vetri, riflessi sui laghi, riflessi sui muri, riflessi sui fiumi, riflessi sull&#39;arredamento urbano, riflessi sulle cascate, riflessi sui cani e altro ancora.
 </br>
 Lo stile elegante e raffinato degli <i>Occhiali da faccia solari ACME</i> li rende l&#39;accessorio perfetto per ogni occasione. Ma non lasciatevi ingannare dalla loro linea ricercata e dai loro materiali pregiati: gli <i>Occhiali da faccia solari ACME</i> saranno l&#39;occhiale da faccia perfetto anche per i momenti pi&ugrave; informali, non solo per quelli eleganti! Una volta che li avrai non potrai pi&ugrave; farne a meno! Alcuni esempi di situazioni in cui puoi indossare gli <i>Occhiali da faccia solari ACME</i>: festa in spiaggia, pranzo in spiaggia, apericena in spiaggia, cena in spiaggia, aperitivo in spiaggia, passeggiata in spiaggia, spiaggia in spiaggia e molti altri. &#200; sconsigliato l&#39;uso degli <i>Occhiali da faccia solari ACME</i> negli ambienti chiusi (perch&#233; dovresti usare degli occhiali da sole al coperto?).
 </br>
@@ -248,7 +224,7 @@ Con l&#39;innovativo design ergodinamico, gli <i>Occhiali da faccia solari ACME<
 <div class="reviewStars">
 <img class="star" src="images/Full_star.png"><img class="star" src="images/Full_star.png"><img class="star" src="images/Full_star.png"><img class="star" src="images/Full_star.png"><img class="star" src="images/Full_star.png">
 </div>
-<div class="reviewText">Ottimi occhiali da faccia da sole solari. Ho cercato molti occhiali prima di prendere questi. Devo dire che quando ho fatto l &#39;ordine non ero molto convinto, ma quando sono arrivati sono rimasto subito colpito dalla loro qualit&agrave;. Non solo la montatura &egrave; realizzata con materiali di alta qualit&agrave; (io ho preso quelli di materialedue), ma si adatta anche incredibilmente bene alla mia faccia.
+<div class="reviewText">Ottimi occhiali da faccia da sole solari. Ho cercato molti occhiali prima di prendere questi. Devo dire che quando ho fatto l &#39;ordine non ero molto convinto, ma quando sono arrivati sono rimasto subito colpito dalla loro qualit&agrave;. Non solo la montatura &egrave; realizzata con materiali di alta qualit&agrave; (io ho preso quelli di legno), ma si adatta anche incredibilmente bene alla mia faccia.
 </div>
 </div>
 
