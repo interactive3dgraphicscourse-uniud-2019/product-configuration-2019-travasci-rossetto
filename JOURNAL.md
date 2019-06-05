@@ -50,6 +50,15 @@ Cambiato modello e aggiunta un prima versione di shading per materiali metallici
 
 model credits:  https://www.blendswap.com/blends/view/70347
 
-![Occhiali](https://raw.githubusercontent.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/master/screenshots/glasses%20first%20render.PNG)
+![Occhiali](https://raw.githubusercontent.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/master/screenshots/glasses_first_render.png)
 
 - Eric Rossetto
+
+## Cambio dei materiali
+```05.06.2019 - 19:51```
+
+Implementato il codice per cambiare il materiale delle stanghette degli occhiali tramite i pulsanti. Regolata la posizione della luce e dell'oggetto. Modificato il fragment shader in modo che usi anche le texture maps per l'illuminazione speculare.
+
+![Cambiamento dei materiali](https://raw.githubusercontent.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/master/screenshots/CambioMateriali.PNG)
+
+- Stefano Travasci
