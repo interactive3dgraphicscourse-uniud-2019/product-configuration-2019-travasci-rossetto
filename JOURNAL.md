@@ -44,3 +44,14 @@ Aggiunto il modello. Ricalcolate normali e sistemati errori nel modello preso da
 model credits: https://free3d.com/3d-model/glasses-56919.html
 
 - Eric Rossetto
+
+## Modello e codice di shading
+```05.06.2019 - 11:08```
+
+Cambiato modello e aggiunta un prima versione di shading per materiali metallici.
+
+model credits:  -- DA AGGIUNGERE -- 
+
+![Occhiali](https://raw.githubusercontent.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/master/screenshots/glasses%20first%20render.PNG)
+
+- Eric Rossetto
