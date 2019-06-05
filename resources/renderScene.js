@@ -32,7 +32,6 @@ var uniforms_metal = {
 	specularMap: { type: "t", value: specularMapMetal },
 	displacementMap: { type: "t", value: displacementMapMetal },
 	normalMap: { type: "t", value: normalMapMetal },
-	metalness:	{ type: "f", value: 1.0 },
 };
 
 var uniforms_wood = {
@@ -43,7 +42,6 @@ var uniforms_wood = {
 	specularMap: { type: "t", value: specularMapWood },
 	displacementMap: { type: "t", value: displacementMapWood },
 	normalMap: { type: "t", value: normalMapWood },
-	metalness:	{ type: "f", value: 0.0 },
 };
 
 var uniforms_plastic = {
@@ -54,7 +52,6 @@ var uniforms_plastic = {
 	specularMap: { type: "t", value: specularMapPlastic },
 	displacementMap: { type: "t", value: displacementMapPlastic },
 	normalMap: { type: "t", value: normalMapPlastic },
-	metalness:	{ type: "f", value: 0.0 },
 };
 
 var glassBody=[];
@@ -68,7 +65,7 @@ function Start() {
 
 	renderer.setSize( 915, 500 );
 	renderer.setClearColor( 0xf0f0f0 );
-	camera.position.set( 0, 1, 30 );
+	camera.position.set( 0, 2, 18 );
 				
 	var loader = new THREE.CubeTextureLoader();
 	loader.setPath( 'images/Standard-Cube-Map/' );
@@ -86,7 +83,7 @@ function Start() {
 
 	loadObj();
 	var lightMesh = new THREE.Mesh( new THREE.SphereGeometry(1, 16, 16), new THREE.MeshBasicMaterial ({color: 0xffff00, wireframe:true}));
-	lightMesh.position.set( -30.0, 60.0, 50.0 );
+	lightMesh.position.set( -30.0, 31.0, 5 );
 	
 	uniforms_metal.pointLightPosition.value = new THREE.Vector3(lightMesh.position.x,
 		lightMesh.position.y,
@@ -143,7 +140,8 @@ function Start() {
 				});
 
 				glasses.scale.multiplyScalar( 2 );
-				glasses.rotation.y -= 65 * Math.PI/180;
+				glasses.rotation.y -= 125 * Math.PI/180;
+				glasses.position.z=1;
 				scene.add( glasses );
 			}
 		);
