@@ -64,10 +64,10 @@ Implementato il codice per cambiare il materiale delle stanghette degli occhiali
 - Stefano Travasci
 
 ## Normal mapping
-```05.06.2019 - 11:08```
+```06.06.2019 - 11:23```
 
 Cambiato il tipo di file del modello da .obj a .gltf in modo che questo supporti le tangenti per un corretto calcolo del normal mapping. Aggiunte le linee di codice per quest'ultimo.
 
-![Occhiali](https://raw.githubusercontent.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/master/screenshots/normal_mapping.png)
+![nrm-map](https://github.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/blob/master/images/normal_mapping.png)
 
 - Eric Rossetto
