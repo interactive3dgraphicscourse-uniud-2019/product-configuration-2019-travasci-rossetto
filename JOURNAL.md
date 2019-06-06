@@ -71,3 +71,12 @@ Cambiato il tipo di file del modello da .obj a .gltf in modo che questo supporti
 ![nrm-map](https://github.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/blob/master/images/normal_mapping.png)
 
 - Eric Rossetto
+
+## Riflesso delle lenti
+```06.06.2019 - 16:25```
+
+Aggiunto il riflesso dell'environment map sulle lenti degli occhiali.
+
+![Riflesso sugli occhiali](https://raw.githubusercontent.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/master/screenshots/Aggiunto%20riflesso%20delle%20lenti.PNG)
+
+- Stefano Travasci
