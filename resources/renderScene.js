@@ -110,7 +110,7 @@ function Start() {
 		var loader = new THREE.OBJLoader();
 		loader.useIndices = true;
 		loader.load(
-			"../models/glasses.obj",
+			"../models/glasses_1.1.obj",
 
 			function( object ) {
 
@@ -127,7 +127,7 @@ function Start() {
 							//console.log(glassMaterial);
 							mesh = new THREE.Mesh( geometry, glassMaterial );
 							glasses.add(mesh);
-						} else if( geometry != object.children[0].geometry ){
+						} else if( geometry != object.children[3].geometry ){
 							var frameMaterial = new THREE.ShaderMaterial({ uniforms: uniforms_metal, vertexShader: vs, fragmentShader: fs });
 							frameMaterial.vertexTangents = true;
 							frameMaterial.needsUpdate = true;
@@ -155,14 +155,14 @@ function Update() {
 
 function changeGlassesMaterial(n){
 	var uniform;
-	if(n==1){
-		uniform=uniforms_metal;
+	if(n == 1){
+		uniform = uniforms_metal;
 	}else if(n==2){
-		uniform=uniforms_wood;
+		uniform = uniforms_wood;
 	}else{
-		uniform=uniforms_plastic;
+		uniform = uniforms_plastic;
 	}
-	for(i=0;i<glassBody.length;i++){
+	for( i=0; i<glassBody.length; i++){
 		glassBody[i].material=new THREE.ShaderMaterial({ uniforms: uniform, vertexShader: vs, fragmentShader: fs });
 	}
 }
