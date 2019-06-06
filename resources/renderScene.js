@@ -84,7 +84,7 @@ function Start() {
 
 	renderer.setSize( 915, 500 );
 	renderer.setClearColor( 0xf0f0f0 );
-	camera.position.set( 0, 2, 18 );
+	camera.position.set( 0, 2, 12 );
 				
 	var loader = new THREE.CubeTextureLoader();
 	loader.setPath( 'images/Standard-Cube-Map/' );
