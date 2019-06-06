@@ -80,3 +80,10 @@ Aggiunto il riflesso dell'environment map sulle lenti degli occhiali.
 ![Riflesso sugli occhiali](https://raw.githubusercontent.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/master/screenshots/Aggiunto%20riflesso%20delle%20lenti.PNG)
 
 - Stefano Travasci
+
+## Rotazione della camera
+```07.06.2019 - 00:20```
+
+La videocamera virtuale girerà attorno agli occhiali fino a quando non si clicca sul canvas.
+
+- Stefano Travasci
