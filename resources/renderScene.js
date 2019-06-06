@@ -56,6 +56,24 @@ var uniforms_plastic = {
 
 var glassBody=[];
 
+var loader = new THREE.CubeTextureLoader();
+	loader.setPath( 'images/Standard-Cube-Map/' );
+
+var textureCube = loader.load( [
+	'px.png', 'nx.png',
+	'py.png', 'ny.png',
+	'pz.png', 'nz.png'
+] );
+
+var mirrorNormalMap = new THREE.TextureLoader().load('./texture/Metal_Bare_se2abbvc_4K_surface_ms/se2abbvc_4K_Normal.jpg');
+
+var uniformsMirror = {
+	cspec:	{ type: "v3", value: new THREE.Vector3(0.6,0.6,0.6) },
+	envMap:	{ type: "t", value: textureCube},
+	normalMap:	{ type: "t", value: mirrorNormalMap},
+	normalScale: {type: "v2", value: new THREE.Vector2(1,1)},
+};
+
 function Start() {
 
 	scene = new THREE.Scene();
@@ -81,11 +99,14 @@ function Start() {
 
 	vs = document.getElementById("vertex").textContent;
 	fs = document.getElementById("fragment").textContent;
+	
+	vsMirror = document.getElementById("vertexMirror").textContent;
+	fsMirror = document.getElementById("fragmentMirror").textContent;
 
 	loadObj();
 	var lightMesh = new THREE.Mesh( new THREE.SphereGeometry(1, 16, 16), new THREE.MeshBasicMaterial ({color: 0xffff00, wireframe:true}));
-	lightMesh.position.set( 20.0, 15.0, 5 );
-	//lightMesh.position.set( -30.0, 31.0, 5 );
+	//lightMesh.position.set( 20.0, 15.0, 5 );
+	lightMesh.position.set( -30.0, 31.0, 5 );
 	
 	uniforms_metal.pointLightPosition.value = new THREE.Vector3(lightMesh.position.x,
 		lightMesh.position.y,
@@ -158,7 +179,7 @@ function Start() {
 				"../models/glasses.gltf",
 	
 				function( object ) {
-					console.log( object.scene );
+					//console.log( object.scene );
 
 					glasses = new THREE.Object3D();
 
@@ -166,7 +187,7 @@ function Start() {
 						geometry = object.scene.children[i].geometry;
 						
 						if( i == 3 ) {
-							var glassMaterial = new THREE.ShaderMaterial({ uniforms: uniforms_plastic, vertexShader: vs, fragmentShader: fs });
+							var glassMaterial = new THREE.ShaderMaterial({ uniforms: uniformsMirror, vertexShader: vsMirror, fragmentShader: fsMirror });
 							glassMaterial.vertexTangents = true;
 							glassMaterial.needsUpdate = true;
 							//console.log(glassMaterial);
@@ -185,6 +206,7 @@ function Start() {
 	
 					//glasses.scale.multiplyScalar( 2 );
 					glasses.rotation.x += 90 * Math.PI/180;
+					glasses.rotation.z += 125 * Math.PI/180;
 					glasses.position.z=1;
 					glasses.scale.multiplyScalar(2);
 					scene.add( glasses );
