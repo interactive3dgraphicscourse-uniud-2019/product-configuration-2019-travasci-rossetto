@@ -173,48 +173,57 @@ function Start() {
 \		*/
 
 		// GLTF LOADER
-		function loadObj() {
-			var loader = new THREE.GLTFLoader();
-			loader.load(
-				"../models/glasses.gltf",
-	
-				function( object ) {
-					//console.log( object.scene );
+function loadObj() {
+	var loader = new THREE.GLTFLoader();
+	loader.load(
+		"../models/glasses.gltf",
 
-					glasses = new THREE.Object3D();
-
-					for( i=0; i<object.scene.children.length; ++i) {
-						geometry = object.scene.children[i].geometry;
-						
-						if( i == 3 ) {
-							var glassMaterial = new THREE.ShaderMaterial({ uniforms: uniformsMirror, vertexShader: vsMirror, fragmentShader: fsMirror });
-							glassMaterial.vertexTangents = true;
-							glassMaterial.needsUpdate = true;
-							//console.log(glassMaterial);
-							mesh = new THREE.Mesh( geometry, glassMaterial );
-							glasses.add(mesh);
-						} else {
-							var frameMaterial = new THREE.ShaderMaterial({ uniforms: uniforms_metal, vertexShader: vs, fragmentShader: fs });
-							frameMaterial.vertexTangents = true;
-							frameMaterial.needsUpdate = true;
-							//console.log(frameMaterial);
-							mesh = new THREE.Mesh( geometry, frameMaterial );
-							glasses.add(mesh)
-							glassBody.push(mesh);
-						}
-					}
-	
-					//glasses.scale.multiplyScalar( 2 );
-					glasses.rotation.x += 90 * Math.PI/180;
-					glasses.rotation.z += 125 * Math.PI/180;
-					glasses.position.z=1;
-					glasses.scale.multiplyScalar(2);
-					scene.add( glasses );
+		function( object ) {
+			//console.log( object.scene );
+				glasses = new THREE.Object3D();
+				for( i=0; i<object.scene.children.length; ++i) {
+				geometry = object.scene.children[i].geometry;
+				
+				if( i == 3 ) {
+					var glassMaterial = new THREE.ShaderMaterial({ uniforms: uniformsMirror, vertexShader: vsMirror, fragmentShader: fsMirror });
+					glassMaterial.vertexTangents = true;
+					glassMaterial.needsUpdate = true;
+					//console.log(glassMaterial);
+					mesh = new THREE.Mesh( geometry, glassMaterial );
+					glasses.add(mesh);
+				} else {
+					var frameMaterial = new THREE.ShaderMaterial({ uniforms: uniforms_metal, vertexShader: vs, fragmentShader: fs });
+					frameMaterial.vertexTangents = true;
+					frameMaterial.needsUpdate = true;
+					//console.log(frameMaterial);
+					mesh = new THREE.Mesh( geometry, frameMaterial );
+					glasses.add(mesh)
+					glassBody.push(mesh);
 				}
-			);
-	}
+			}
 
+			//glasses.scale.multiplyScalar( 2 );
+			glasses.rotation.x += 90 * Math.PI/180;
+			glasses.rotation.z += 125 * Math.PI/180;
+			glasses.position.z=1;
+			glasses.scale.multiplyScalar(2);
+			scene.add( glasses );
+		}
+	);
+}
+	
+var cameraRotation=true;
 function Update() {
+	if(cameraRotation){
+		var t=Date.now();
+		t%=10000;
+		t=(t/10000)*2*Math.PI;
+		camera.position.x=Math.sin(t)*14;
+		camera.position.z=Math.cos(t)*14-2;
+		camera.position.y=Math.sin(t)*2+2;
+		camera.up = new THREE.Vector3(0,1,0);
+		camera.lookAt(new THREE.Vector3(0,0,0));
+	}
 	requestAnimationFrame(Update);
 	//stats.update();
 	renderer.render(scene, camera);
