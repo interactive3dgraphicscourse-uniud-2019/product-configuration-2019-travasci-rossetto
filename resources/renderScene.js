@@ -71,7 +71,6 @@ var uniformsMirror = {
 	cspec:	{ type: "v3", value: new THREE.Vector3(0.6,0.6,0.6) },
 	envMap:	{ type: "t", value: textureCube},
 	normalMap:	{ type: "t", value: mirrorNormalMap},
-	normalScale: {type: "v2", value: new THREE.Vector2(1,1)},
 };
 
 function Start() {
@@ -182,24 +181,24 @@ function loadObj() {
 			//console.log( object.scene );
 				glasses = new THREE.Object3D();
 				for( i=0; i<object.scene.children.length; ++i) {
-				geometry = object.scene.children[i].geometry;
+					geometry = object.scene.children[i].geometry;
 				
-				if( i == 3 ) {
-					var glassMaterial = new THREE.ShaderMaterial({ uniforms: uniformsMirror, vertexShader: vsMirror, fragmentShader: fsMirror });
-					glassMaterial.vertexTangents = true;
-					glassMaterial.needsUpdate = true;
-					//console.log(glassMaterial);
-					mesh = new THREE.Mesh( geometry, glassMaterial );
-					glasses.add(mesh);
-				} else {
-					var frameMaterial = new THREE.ShaderMaterial({ uniforms: uniforms_metal, vertexShader: vs, fragmentShader: fs });
-					frameMaterial.vertexTangents = true;
-					frameMaterial.needsUpdate = true;
-					//console.log(frameMaterial);
-					mesh = new THREE.Mesh( geometry, frameMaterial );
-					glasses.add(mesh)
-					glassBody.push(mesh);
-				}
+					if( i == 3 ) {
+						var glassMaterial = new THREE.ShaderMaterial({ uniforms: uniformsMirror, vertexShader: vsMirror, fragmentShader: fsMirror });
+						glassMaterial.vertexTangents = true;
+						glassMaterial.needsUpdate = true;
+						//console.log(glassMaterial);
+						mesh = new THREE.Mesh( geometry, glassMaterial );
+						glasses.add(mesh);
+					} else {
+						var frameMaterial = new THREE.ShaderMaterial({ uniforms: uniforms_metal, vertexShader: vs, fragmentShader: fs });
+						frameMaterial.vertexTangents = true;
+						frameMaterial.needsUpdate = true;
+						//console.log(frameMaterial);
+						mesh = new THREE.Mesh( geometry, frameMaterial );
+						glasses.add(mesh)
+						glassBody.push(mesh);
+					}
 			}
 
 			//glasses.scale.multiplyScalar( 2 );
