@@ -70,6 +70,12 @@ var uniformsMirror = {
 	normalMap:	{ type: "t", value: mirrorNormalMap},
 };
 
+var uniformsGlass = {
+	cspec:	{ type: "v3", value: new THREE.Vector3(0.6,0.6,0.6) },
+	envMap:	{ type: "t", value: textureCube},
+	normalMap:	{ type: "t", value: mirrorNormalMap},
+}
+
 function Start() {
 
 	scene = new THREE.Scene();
@@ -98,6 +104,9 @@ function Start() {
 	
 	vsMirror = document.getElementById("vertexMirror").textContent;
 	fsMirror = document.getElementById("fragmentMirror").textContent;
+
+	vsGlass = document.getElementById("vertexGlass").textContent;
+	fsGlass = document.getElementById("fragmentGlass").textContent;
 
 	loadObj();
 	var lightMesh = new THREE.Mesh( new THREE.SphereGeometry(1, 16, 16), new THREE.MeshBasicMaterial ({color: 0xffff00, wireframe:true}));
@@ -137,7 +146,7 @@ function loadObj() {
 					geometry = object.scene.children[i].geometry;
 				
 					if( i == 3 ) {
-						var glassMaterial = new THREE.ShaderMaterial({ uniforms: uniformsMirror, vertexShader: vsMirror, fragmentShader: fsMirror });
+						var glassMaterial = new THREE.ShaderMaterial({ uniforms: uniformsGlass, vertexShader: vsGlass, fragmentShader: fsGlass });
 						glassMaterial.vertexTangents = true;
 						glassMaterial.needsUpdate = true;
 						//console.log(glassMaterial);
