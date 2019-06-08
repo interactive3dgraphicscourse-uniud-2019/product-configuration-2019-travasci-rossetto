@@ -94,3 +94,12 @@ La videocamera virtuale girerà attorno agli occhiali fino a quando non si clicc
 Aggiunto un effetto di rifrazione sulle lenti. 
 
 - Eric Rossetto
+
+## Cambiamento tra i tipi di lente
+```08.06.2019 - 20:12```
+
+Aggiunto un pulsante per cambiare il tipo delle lenti da quelle riflettenti a quelle opache. Cambiato inoltre il colore delle lenti opache ad un colore più adatto ad esse.
+
+![Cambiamento tipi di lente](https://raw.githubusercontent.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/master/screenshots/Pulsante%20cambio%20delle%20lenti.PNG)
+
+- Stefano Travasci
