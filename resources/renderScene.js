@@ -21,6 +21,14 @@ var specularMapPlastic = new THREE.TextureLoader().load('./texture/_schbehmp_4K_
 var normalMapPlastic = new THREE.TextureLoader().load('./texture/_schbehmp_4K_surface_ms/schbehmp_4K_Normal.jpg');
 var displacementMapPlastic = new THREE.TextureLoader().load('./texture/_schbehmp_4K_surface_ms/schbehmp_4K_Displacement.jpg');
 
+//Chicken texture (material #1)
+var diffuseMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Albedo.jpg');
+var roughnessMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Roughness.jpg');
+var specularMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Specular.jpg');
+var normalMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Normal.jpg');
+var displacementMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Displacement.jpg');
+var aoMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_AO.jpg');
+
 var uniforms_metal = {
 	pointLightPosition:	{ type: "v3", value: new THREE.Vector3() },
 	clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },

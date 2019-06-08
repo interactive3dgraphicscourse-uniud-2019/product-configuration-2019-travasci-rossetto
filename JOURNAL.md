@@ -87,3 +87,10 @@ Aggiunto il riflesso dell'environment map sulle lenti degli occhiali.
 La videocamera virtuale girerà attorno agli occhiali fino a quando non si clicca sul canvas.
 
 - Stefano Travasci
+
+## Rifrazione delle lenti
+```08.06.2019 - 11:20```
+
+Aggiunto un effetto di rifrazione sulle lenti. 
+
+- Eric Rossetto
