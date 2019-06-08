@@ -60,6 +60,7 @@ var uniforms_plastic = {
 };
 
 var glassBody=[];
+var glassLenses=[];
 
 var loader = new THREE.CubeTextureLoader();
 	loader.setPath( 'images/Standard-Cube-Map/' );
@@ -70,7 +71,7 @@ var textureCube = loader.load( [
 	'pz.png', 'nz.png'
 ] );
 
-var mirrorNormalMap = new THREE.TextureLoader().load('./texture/Metal_Bare_se2abbvc_4K_surface_ms/se2abbvc_4K_Normal.jpg');
+var mirrorNormalMap = new THREE.TextureLoader().load('./texture/glassNormal.jpg');
 
 var uniformsMirror = {
 	cspec:	{ type: "v3", value: new THREE.Vector3(0.6,0.6,0.6) },
@@ -79,7 +80,7 @@ var uniformsMirror = {
 };
 
 var uniformsGlass = {
-	cspec:	{ type: "v3", value: new THREE.Vector3(0.6,0.6,0.6) },
+	cspec:	{ type: "v3", value: new THREE.Vector3(12.0/255.0,12.0/255.0,12.0/255.0) },
 	envMap:	{ type: "t", value: textureCube},
 	normalMap:	{ type: "t", value: mirrorNormalMap},
 }
@@ -154,12 +155,13 @@ function loadObj() {
 					geometry = object.scene.children[i].geometry;
 				
 					if( i == 3 ) {
-						var glassMaterial = new THREE.ShaderMaterial({ uniforms: uniformsGlass, vertexShader: vsGlass, fragmentShader: fsGlass });
+						var glassMaterial = new THREE.ShaderMaterial({ uniforms: uniformsMirror, vertexShader: vsMirror, fragmentShader: fsMirror });
 						glassMaterial.vertexTangents = true;
 						glassMaterial.needsUpdate = true;
 						//console.log(glassMaterial);
 						mesh = new THREE.Mesh( geometry, glassMaterial );
 						glasses.add(mesh);
+						glassLenses.push(mesh);
 					} else {
 						var frameMaterial = new THREE.ShaderMaterial({ uniforms: uniforms_metal, vertexShader: vs, fragmentShader: fs });
 						frameMaterial.vertexTangents = true;
@@ -211,5 +213,25 @@ function changeGlassesMaterial(n){
 		glassBody[i].material=new THREE.ShaderMaterial({ uniforms: uniform, vertexShader: vs, fragmentShader: fs });
 		glassBody[i].geometry.vertexTangents = true;
 		glassBody[i].geometry.needsUpdate = true;
+	}
+}
+
+function switchLenses(reflective){
+	var uniform;
+	var vsLenses;
+	var fsLenses;
+	if(reflective){
+		uniform=uniformsMirror;
+		vsLenses=vsMirror;
+		fsLenses=fsMirror;
+	}else{
+		uniform=uniformsGlass;
+		vsLenses=vsGlass;
+		fsLenses=fsGlass;
+	}
+	for( i=0; i<glassLenses.length; i++){
+		glassLenses[i].material=new THREE.ShaderMaterial({ uniforms: uniform, vertexShader: vsLenses, fragmentShader: fsLenses });
+		glassLenses[i].geometry.vertexTangents = true;
+		glassLenses[i].geometry.needsUpdate = true;
 	}
 }

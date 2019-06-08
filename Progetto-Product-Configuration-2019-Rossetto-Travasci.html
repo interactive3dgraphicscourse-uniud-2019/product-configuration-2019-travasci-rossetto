@@ -13,7 +13,7 @@
 <script src='libs/BufferGeometryUtils.js'></script>
 <script>
 	isFavorite=false;
-	 function favoriteAction(){
+	function favoriteAction(){
 		if(isFavorite){
 			document.getElementById("favorites").src="images/Add_to_favorites.png";
 			document.getElementById("favorites").title="Aggiungi ai preferiti";
@@ -22,10 +22,10 @@
 			document.getElementById("favorites").title="Rimuovi dai preferiti";
 		}
 		isFavorite=!isFavorite;
-	 }
+	}
 	 
-	 selectedMaterial=1;
-	 function changeMaterial(n){
+	selectedMaterial=1;
+	function changeMaterial(n){
 		var selected, other1, other2;
 		if(n==1){
 			selected=document.getElementById("materialButton1");
@@ -50,7 +50,20 @@
 		other1.style.backgroundColor="#242424";
 		other2.style.backgroundColor="#242424";
 		selectedMaterial = n;
-	 }
+	}
+	
+	reflective=true;
+	function changeLenses(){
+		var button=document.getElementById("materialButtonLenses");
+		if(reflective){
+			button.value="Lenti riflettenti";
+			switchLenses(false);
+		}else{
+			button.value="Lenti trasparenti";
+			switchLenses(true);
+		}
+		reflective=!reflective;
+	}
 </script>
 <script type="text/x-glsl" id="vertex">
 			attribute vec4 tangent;
@@ -352,6 +365,7 @@ Gli occhiali da faccia solari sono l&#39;ultimo ritrovato ACME nel campo dell&#3
 <INPUT id="materialButton1" class="canvasButton" TYPE="button" VALUE="Metallo" onClick="changeMaterial(1);">
 <INPUT id="materialButton2" class="canvasButton" TYPE="button" VALUE="Legno" onClick="changeMaterial(2);">
 <INPUT id="materialButton3" class="canvasButton" TYPE="button" VALUE="Plastica blu" onClick="changeMaterial(3);">
+<INPUT id="materialButtonLenses" class="canvasButton" TYPE="button" VALUE="Lenti trasparenti" onClick="changeLenses();">
 <script>changeMaterial(1);</script>
 </div>
 </div>
