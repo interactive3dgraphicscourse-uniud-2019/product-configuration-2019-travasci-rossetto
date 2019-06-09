@@ -37,6 +37,7 @@ var uniforms_metal = {
 	specularMap: { type: "t", value: specularMapMetal },
 	displacementMap: { type: "t", value: displacementMapMetal },
 	normalMap: { type: "t", value: normalMapMetal },
+	irradianceMap: { type: "t", value: irradianceMap }
 };
 
 var uniforms_wood = {
@@ -47,6 +48,7 @@ var uniforms_wood = {
 	specularMap: { type: "t", value: specularMapWood },
 	displacementMap: { type: "t", value: displacementMapWood },
 	normalMap: { type: "t", value: normalMapWood },
+	irradianceMap: { type: "t", value: irradianceMap }
 };
 
 var uniforms_plastic = {
@@ -57,6 +59,7 @@ var uniforms_plastic = {
 	specularMap: { type: "t", value: specularMapPlastic },
 	displacementMap: { type: "t", value: displacementMapPlastic },
 	normalMap: { type: "t", value: normalMapPlastic },
+	irradianceMap: { type: "t", value: irradianceMap }
 };
 
 var glassBody=[];
@@ -66,6 +69,15 @@ var loader = new THREE.CubeTextureLoader();
 	loader.setPath( 'images/Standard-Cube-Map/' );
 
 var textureCube = loader.load( [
+	'px.png', 'nx.png',
+	'py.png', 'ny.png',
+	'pz.png', 'nz.png'
+] );
+
+var iloader = new THREE.CubeTextureLoader();
+	iloader.setPath( 'images/Irradiance-Map/' );
+
+var irradianceMap = iloader.load( [
 	'px.png', 'nx.png',
 	'py.png', 'ny.png',
 	'pz.png', 'nz.png'
