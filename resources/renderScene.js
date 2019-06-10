@@ -36,12 +36,12 @@ var roughnessMapPlastic = new THREE.TextureLoader().load('./texture/_schbehmp_4K
 var specularMapPlastic = new THREE.TextureLoader().load('./texture/_schbehmp_4K_surface_ms/schbehmp_4K_Specular.jpg');
 var normalMapPlastic = new THREE.TextureLoader().load('./texture/_schbehmp_4K_surface_ms/schbehmp_4K_Normal.jpg');
 
-//Chicken texture (material #1)
-var diffuseMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Albedo.jpg');
-var roughnessMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Roughness.jpg');
-var specularMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Specular.jpg');
-var normalMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Normal.jpg');
-var aoMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_AO.jpg');
+//Thing texture (material #4)
+var diffuseMapThing = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Albedo.jpg');
+var roughnessMapThing = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Roughness.jpg');
+var specularMapThing = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Specular.jpg');
+var normalMapThing = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Normal.jpg');
+var aoMapThing = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_AO.jpg');
 
 var uniforms_metal = {
 	pointLightPosition:	{ type: "v3", value: new THREE.Vector3() },
@@ -70,6 +70,16 @@ var uniforms_plastic = {
 	diffuseMap: { type: "t", value: diffuseMapPlastic },
 	specularMap: { type: "t", value: specularMapPlastic },
 	normalMap: { type: "t", value: normalMapPlastic },
+	irradianceMap: { type: "t", value: irradianceMap }
+};
+
+var uniforms_thing = {
+	pointLightPosition:	{ type: "v3", value: new THREE.Vector3( 0.0, 0.0, 0.0 ) },
+	clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },
+	roughnessMap: { type: "t", value: roughnessMapThing },
+	diffuseMap: { type: "t", value: diffuseMapThing },
+	specularMap: { type: "t", value: specularMapThing },
+	normalMap: { type: "t", value: normalMapThing },
 	irradianceMap: { type: "t", value: irradianceMap }
 };
 
@@ -135,6 +145,10 @@ function Start() {
 		lightMesh.position.z);
 		
 	uniforms_plastic.pointLightPosition.value = new THREE.Vector3(lightMesh.position.x,
+		lightMesh.position.y,
+		lightMesh.position.z);
+		
+	uniforms_thing.pointLightPosition.value = new THREE.Vector3(lightMesh.position.x,
 		lightMesh.position.y,
 		lightMesh.position.z);
 
@@ -211,8 +225,10 @@ function changeGlassesMaterial(n){
 		uniform = uniforms_metal;
 	}else if(n==2){
 		uniform = uniforms_wood;
-	}else{
+	}else if(n==3){
 		uniform = uniforms_plastic;
+	}else{
+		uniform=uniforms_thing;
 	}
 	for( i=0; i<glassBody.length; i++){
 		glassBody[i].material=new THREE.ShaderMaterial({ uniforms: uniform, vertexShader: vs, fragmentShader: fs });

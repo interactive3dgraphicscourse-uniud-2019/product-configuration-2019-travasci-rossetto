@@ -37,11 +37,14 @@
 			selected=document.getElementById("materialButton2");
 			other2=document.getElementById("materialButton3");
 			changeGlassesMaterial(n);
-		}else{
+		}else if(n==3){
 			other1=document.getElementById("materialButton1");
 			other2=document.getElementById("materialButton2");
 			selected=document.getElementById("materialButton3");
 			changeGlassesMaterial(n);
+		}else{
+			changeGlassesMaterial(n);
+			return;
 		}
 		selected.style.color="white";
 		other1.style.color="#707070";
@@ -392,7 +395,7 @@ Gli occhiali da faccia solari sono l&#39;ultimo ritrovato ACME nel campo dell&#3
 <div id="longDescription">
 I nuovi <i>Occhiali da faccia solari ACME</i> sono disponibili in ben tre versioni diverse: Metallo, Legno e Plastica blu. Le lenti disponibili invece sono due, ma questo solo perch&#233; sono di cos&igrave; ottima fattura che non avrebbe senso proporre delle alternative inferiori! Grazie a queste lenti sarete protetti dalla luce intensa, dagli invisibili ma pericolosissimi raggi ultravioletti e dai fastidiosi riflessi. Alcuni esempi di riflessi da cui protegge sono: riflessi sui pavimenti, riflessi sulle pozzanghere, riflessi sulle strade, riflessi sul mare, riflessi sui vetri, riflessi sui laghi, riflessi sui muri, riflessi sui fiumi, riflessi sull&#39;arredamento urbano, riflessi sulle cascate, riflessi sui cani e altro ancora.
 </br>
-Lo stile elegante e raffinato degli <i>Occhiali da faccia solari ACME</i> li rende l&#39;accessorio perfetto per ogni occasione. Ma non lasciatevi ingannare dalla loro linea ricercata e dai loro materiali pregiati: gli <i>Occhiali da faccia solari ACME</i> saranno l&#39;occhiale da faccia perfetto anche per i momenti pi&ugrave; informali, non solo per quelli eleganti! Una volta che li avrai non potrai pi&ugrave; farne a meno! Alcuni esempi di situazioni in cui puoi indossare gli <i>Occhiali da faccia solari ACME</i>: festa in spiaggia, pranzo in spiaggia, apericena in spiaggia, cena in spiaggia, aperitivo in spiaggia, passeggiata in spiaggia, spiaggia in spiaggia e molti altri. &#200; sconsigliato l&#39;uso degli <i>Occhiali da faccia solari ACME</i> negli ambienti chiusi (perch&#233; dovresti usare degli occhiali da sole al coperto?).
+Lo stile elegante e raffinato degli <i>Occhiali da <span onclick="changeMaterial(4)">faccia</span> solari ACME</i> li rende l&#39;accessorio perfetto per ogni occasione. Ma non lasciatevi ingannare dalla loro linea ricercata e dai loro materiali pregiati: gli <i>Occhiali da faccia solari ACME</i> saranno l&#39;occhiale da faccia perfetto anche per i momenti pi&ugrave; informali, non solo per quelli eleganti! Una volta che li avrai non potrai pi&ugrave; farne a meno! Alcuni esempi di situazioni in cui puoi indossare gli <i>Occhiali da faccia solari ACME</i>: festa in spiaggia, pranzo in spiaggia, apericena in spiaggia, cena in spiaggia, aperitivo in spiaggia, passeggiata in spiaggia, spiaggia in spiaggia e molti altri. &#200; sconsigliato l&#39;uso degli <i>Occhiali da faccia solari ACME</i> negli ambienti chiusi (perch&#233; dovresti usare degli occhiali da sole al coperto?).
 </br>
 Con l&#39;innovativo design ergodinamico, gli <i>Occhiali da faccia solari ACME</i>  si adatteranno a quasi ogni faccia. Anni di studi hanno permesso le sviluppo di una tecnologia che permetter&agrave; agli <i>Occhiali da faccia da sole solari ACME</i> di appoggiarsi delicatamente sul vostro naso e sulle vostre orecchie.
 </div>
