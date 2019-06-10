@@ -5,65 +5,6 @@ var diffuseMapMetal = new THREE.TextureLoader().load('./texture/Metal_Bare_se2ab
 var roughnessMapMetal = new THREE.TextureLoader().load('./texture/Metal_Bare_se2abbvc_4K_surface_ms/se2abbvc_4K_Roughness.jpg');
 var specularMapMetal = new THREE.TextureLoader().load('./texture/Metal_Bare_se2abbvc_4K_surface_ms/se2abbvc_4K_Specular.jpg');
 var normalMapMetal = new THREE.TextureLoader().load('./texture/Metal_Bare_se2abbvc_4K_surface_ms/se2abbvc_4K_Normal.jpg');
-var displacementMapMetal = new THREE.TextureLoader().load('./texture/Metal_Bare_se2abbvc_4K_surface_ms/se2abbvc_4K_Displacement.jpg');
-
-//Wood texture (material #2)
-var diffuseMapWood = new THREE.TextureLoader().load('./texture/[4K]Wood16/Wood16_col.jpg');
-var roughnessMapWood = new THREE.TextureLoader().load('./texture/[4K]Wood16/Wood16_rgh.jpg');
-var specularMapWood = new THREE.TextureLoader().load('./texture/[4K]Wood16/Wood16_Specular.jpg');
-var normalMapWood = new THREE.TextureLoader().load('./texture/[4K]Wood16/Wood16_nrm.jpg');
-var displacementMapWood = new THREE.TextureLoader().load('./texture/[4K]Wood16/Wood16_disp.jpg');
-
-//Plastic texture (material #3)
-var diffuseMapPlastic = new THREE.TextureLoader().load('./texture/_schbehmp_4K_surface_ms/schbehmp_4K_Diffuse.jpg');
-var roughnessMapPlastic = new THREE.TextureLoader().load('./texture/_schbehmp_4K_surface_ms/schbehmp_4K_Roughness.jpg');
-var specularMapPlastic = new THREE.TextureLoader().load('./texture/_schbehmp_4K_surface_ms/schbehmp_4K_Specular.jpg');
-var normalMapPlastic = new THREE.TextureLoader().load('./texture/_schbehmp_4K_surface_ms/schbehmp_4K_Normal.jpg');
-var displacementMapPlastic = new THREE.TextureLoader().load('./texture/_schbehmp_4K_surface_ms/schbehmp_4K_Displacement.jpg');
-
-//Chicken texture (material #1)
-var diffuseMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Albedo.jpg');
-var roughnessMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Roughness.jpg');
-var specularMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Specular.jpg');
-var normalMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Normal.jpg');
-var displacementMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Displacement.jpg');
-var aoMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_AO.jpg');
-
-var uniforms_metal = {
-	pointLightPosition:	{ type: "v3", value: new THREE.Vector3() },
-	clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },
-	roughnessMap: { type: "t", value: roughnessMapMetal },
-	diffuseMap: { type: "t", value: diffuseMapMetal },
-	specularMap: { type: "t", value: specularMapMetal },
-	displacementMap: { type: "t", value: displacementMapMetal },
-	normalMap: { type: "t", value: normalMapMetal },
-	irradianceMap: { type: "t", value: irradianceMap }
-};
-
-var uniforms_wood = {
-	pointLightPosition:	{ type: "v3", value: new THREE.Vector3( 0.0, 0.0, 0.0 ) },
-	clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },
-	roughnessMap: { type: "t", value: roughnessMapWood },
-	diffuseMap: { type: "t", value: diffuseMapWood },
-	specularMap: { type: "t", value: specularMapWood },
-	displacementMap: { type: "t", value: displacementMapWood },
-	normalMap: { type: "t", value: normalMapWood },
-	irradianceMap: { type: "t", value: irradianceMap }
-};
-
-var uniforms_plastic = {
-	pointLightPosition:	{ type: "v3", value: new THREE.Vector3( 0.0, 0.0, 0.0 ) },
-	clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },
-	roughnessMap: { type: "t", value: roughnessMapPlastic },
-	diffuseMap: { type: "t", value: diffuseMapPlastic },
-	specularMap: { type: "t", value: specularMapPlastic },
-	displacementMap: { type: "t", value: displacementMapPlastic },
-	normalMap: { type: "t", value: normalMapPlastic },
-	irradianceMap: { type: "t", value: irradianceMap }
-};
-
-var glassBody=[];
-var glassLenses=[];
 
 var loader = new THREE.CubeTextureLoader();
 	loader.setPath( 'images/Standard-Cube-Map/' );
@@ -82,6 +23,58 @@ var irradianceMap = iloader.load( [
 	'py.png', 'ny.png',
 	'pz.png', 'nz.png'
 ] );
+
+//Wood texture (material #2)
+var diffuseMapWood = new THREE.TextureLoader().load('./texture/[4K]Wood16/Wood16_col.jpg');
+var roughnessMapWood = new THREE.TextureLoader().load('./texture/[4K]Wood16/Wood16_rgh.jpg');
+var specularMapWood = new THREE.TextureLoader().load('./texture/[4K]Wood16/Wood16_Specular.jpg');
+var normalMapWood = new THREE.TextureLoader().load('./texture/[4K]Wood16/Wood16_nrm.jpg');
+
+//Plastic texture (material #3)
+var diffuseMapPlastic = new THREE.TextureLoader().load('./texture/_schbehmp_4K_surface_ms/schbehmp_4K_Diffuse.jpg');
+var roughnessMapPlastic = new THREE.TextureLoader().load('./texture/_schbehmp_4K_surface_ms/schbehmp_4K_Roughness.jpg');
+var specularMapPlastic = new THREE.TextureLoader().load('./texture/_schbehmp_4K_surface_ms/schbehmp_4K_Specular.jpg');
+var normalMapPlastic = new THREE.TextureLoader().load('./texture/_schbehmp_4K_surface_ms/schbehmp_4K_Normal.jpg');
+
+//Chicken texture (material #1)
+var diffuseMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Albedo.jpg');
+var roughnessMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Roughness.jpg');
+var specularMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Specular.jpg');
+var normalMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Normal.jpg');
+var aoMapChicken = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_AO.jpg');
+
+var uniforms_metal = {
+	pointLightPosition:	{ type: "v3", value: new THREE.Vector3() },
+	clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },
+	roughnessMap: { type: "t", value: roughnessMapMetal },
+	diffuseMap: { type: "t", value: diffuseMapMetal },
+	specularMap: { type: "t", value: specularMapMetal },
+	normalMap: { type: "t", value: normalMapMetal },
+	irradianceMap: { type: "t", value: irradianceMap }
+};
+
+var uniforms_wood = {
+	pointLightPosition:	{ type: "v3", value: new THREE.Vector3( 0.0, 0.0, 0.0 ) },
+	clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },
+	roughnessMap: { type: "t", value: roughnessMapWood },
+	diffuseMap: { type: "t", value: diffuseMapWood },
+	specularMap: { type: "t", value: specularMapWood },
+	normalMap: { type: "t", value: normalMapWood },
+	irradianceMap: { type: "t", value: irradianceMap }
+};
+
+var uniforms_plastic = {
+	pointLightPosition:	{ type: "v3", value: new THREE.Vector3( 0.0, 0.0, 0.0 ) },
+	clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },
+	roughnessMap: { type: "t", value: roughnessMapPlastic },
+	diffuseMap: { type: "t", value: diffuseMapPlastic },
+	specularMap: { type: "t", value: specularMapPlastic },
+	normalMap: { type: "t", value: normalMapPlastic },
+	irradianceMap: { type: "t", value: irradianceMap }
+};
+
+var glassBody = [];
+var glassLenses = [];
 
 var mirrorNormalMap = new THREE.TextureLoader().load('./texture/glassNormal.jpg');
 
