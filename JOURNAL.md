@@ -103,3 +103,10 @@ Aggiunto un pulsante per cambiare il tipo delle lenti da quelle riflettenti a qu
 ![Cambiamento tipi di lente](https://raw.githubusercontent.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/master/screenshots/Pulsante%20cambio%20delle%20lenti.PNG)
 
 - Stefano Travasci
+
+## Cambiamento tra i tipi di lente
+``11.06.2019 - 5:12```
+
+Aggiunta una possibile implementazione di Irradiance map con una cubetexture pre-computata.
+
+- Eric Rossetto
