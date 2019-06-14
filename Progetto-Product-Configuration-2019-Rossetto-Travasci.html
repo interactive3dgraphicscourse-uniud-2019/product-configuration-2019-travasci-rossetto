@@ -44,6 +44,7 @@
 			changeGlassesMaterial(n);
 		}else{
 			changeGlassesMaterial(n);
+			selectedMaterial=n;
 			return;
 		}
 		selected.style.color="white";
@@ -116,6 +117,7 @@
 			varying vec3 vBitangent;
 			uniform vec3 pointLightPosition; // in world space
 			uniform vec3 clight;
+			uniform vec3 alight;//ambient light
 			uniform sampler2D roughnessMap;
 			uniform sampler2D specularMap;
 			uniform sampler2D diffuseMap;
@@ -177,7 +179,7 @@
 
 				vec3 fresnel = FSchlick(lDoth);
 				vec3 BRDF = ((vec3(1.0)-fresnel)*cdiff)/PI + fresnel*GSmith(nDotv,nDotl)*DGGX(nDoth,roughness*roughness)/(4.0*nDotl*nDotv);
-				vec3 outRadiance = PI * clight * nDotl * BRDF;
+				vec3 outRadiance = min((PI * clight * nDotl * BRDF) + (alight * (cdiff+cspec)) ,vec3(1,1,1));
 				
 				gl_FragColor = vec4(pow( outRadiance, vec3(1.0/2.2)), 1.0);
 			}
