@@ -110,3 +110,12 @@ Aggiunto un pulsante per cambiare il tipo delle lenti da quelle riflettenti a qu
 Aggiunta una possibile implementazione di Irradiance map con una cubetexture pre-computata.
 
 - Eric Rossetto
+
+## Nuovo sfondo
+```14.06.2019 - 18:16```
+
+Aggiunta la possibilità di passare tra il vecchio sfondo ed uno nuovo premendo un pulsante. Questo sfondo ha una propria illuminazione diversa da quello vecchio; anche i riflessi e le trasparenze delle lenti cambiano insieme allo sfondo per adattarsi ad esso.
+
+![Nuovo sfondo](https://raw.githubusercontent.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/master/screenshots/nuovo%20sfondo.PNG)
+
+- Stefano Travasci
