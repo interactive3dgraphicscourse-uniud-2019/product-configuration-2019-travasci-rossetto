@@ -395,6 +395,10 @@ body{
 
 #materialButtonLenses{
 	float:right;
+}
+
+#materialButtonLight{
+	float:right;
 	margin-right:2em;
 }
 

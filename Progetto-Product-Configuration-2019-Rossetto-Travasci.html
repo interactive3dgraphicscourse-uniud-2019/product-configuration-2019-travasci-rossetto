@@ -67,6 +67,20 @@
 		}
 		reflective=!reflective;
 	}
+	
+	selectedBackground=0;
+	function changeBackground(){
+		if(selectedBackground==1){
+			selectedBackground=0;
+			switchBackground(0);
+		}else{
+			selectedBackground=1;
+			switchBackground(1);
+		}
+		changeLenses();
+		changeLenses();
+		changeMaterial(selectedMaterial);
+	}
 </script>
 <script type="text/x-glsl" id="vertex">
 			attribute vec4 tangent;
@@ -376,6 +390,7 @@ Gli occhiali da faccia solari sono l&#39;ultimo ritrovato ACME nel campo dell&#3
 <INPUT id="materialButton1" class="canvasButton" TYPE="button" VALUE="Metallo" onClick="changeMaterial(1);">
 <INPUT id="materialButton2" class="canvasButton" TYPE="button" VALUE="Legno" onClick="changeMaterial(2);">
 <INPUT id="materialButton3" class="canvasButton" TYPE="button" VALUE="Plastica blu" onClick="changeMaterial(3);">
+<INPUT id="materialButtonLight" class="canvasButton" TYPE="button" VALUE="&#x1f4a1;" onClick="changeBackground();">
 <INPUT id="materialButtonLenses" class="canvasButton" TYPE="button" VALUE="Lenti opache" onClick="changeLenses();">
 <script>changeMaterial(1);</script>
 </div>

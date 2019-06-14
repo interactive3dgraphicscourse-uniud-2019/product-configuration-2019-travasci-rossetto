@@ -53,7 +53,7 @@ var specularMapThing = new THREE.TextureLoader().load('./texture/Creature_Skin_r
 var normalMapThing = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_Normal.jpg');
 var aoMapThing = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp0_4K_surface_ms/rmugyqp_4K_AO.jpg');
 
-var uniforms_metal = {
+var uniforms_metal_day = {
 	pointLightPosition:	{ type: "v3", value: new THREE.Vector3() },
 	clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },
 	roughnessMap: { type: "t", value: roughnessMapMetal },
@@ -63,7 +63,7 @@ var uniforms_metal = {
 	irradianceMap: { type: "t", value: irradianceMap }
 };
 
-var uniforms_wood = {
+var uniforms_wood_day = {
 	pointLightPosition:	{ type: "v3", value: new THREE.Vector3( 0.0, 0.0, 0.0 ) },
 	clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },
 	roughnessMap: { type: "t", value: roughnessMapWood },
@@ -73,7 +73,7 @@ var uniforms_wood = {
 	irradianceMap: { type: "t", value: irradianceMap }
 };
 
-var uniforms_plastic = {
+var uniforms_plastic_day = {
 	pointLightPosition:	{ type: "v3", value: new THREE.Vector3( 0.0, 0.0, 0.0 ) },
 	clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },
 	roughnessMap: { type: "t", value: roughnessMapPlastic },
@@ -83,7 +83,7 @@ var uniforms_plastic = {
 	irradianceMap: { type: "t", value: irradianceMap }
 };
 
-var uniforms_thing = {
+var uniforms_thing_day = {
 	pointLightPosition:	{ type: "v3", value: new THREE.Vector3( 0.0, 0.0, 0.0 ) },
 	clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },
 	roughnessMap: { type: "t", value: roughnessMapThing },
@@ -93,22 +93,83 @@ var uniforms_thing = {
 	irradianceMap: { type: "t", value: irradianceMap }
 };
 
+var uniforms_metal_night = {
+	pointLightPosition:	{ type: "v3", value: new THREE.Vector3() },
+	clight:	{ type: "v3", value: new THREE.Vector3( 0.7,0.7,0.7 ) },
+	roughnessMap: { type: "t", value: roughnessMapMetal },
+	diffuseMap: { type: "t", value: diffuseMapMetal },
+	specularMap: { type: "t", value: specularMapMetal },
+	normalMap: { type: "t", value: normalMapMetal },
+	irradianceMap: { type: "t", value: irradianceMap }
+};
+
+var uniforms_wood_night = {
+	pointLightPosition:	{ type: "v3", value: new THREE.Vector3( 0.0, 0.0, 0.0 ) },
+	clight:	{ type: "v3", value: new THREE.Vector3( 0.7,0.7,0.7 ) },
+	roughnessMap: { type: "t", value: roughnessMapWood },
+	diffuseMap: { type: "t", value: diffuseMapWood },
+	specularMap: { type: "t", value: specularMapWood },
+	normalMap: { type: "t", value: normalMapWood },
+	irradianceMap: { type: "t", value: irradianceMap }
+};
+
+var uniforms_plastic_night = {
+	pointLightPosition:	{ type: "v3", value: new THREE.Vector3( 0.0, 0.0, 0.0 ) },
+	clight:	{ type: "v3", value: new THREE.Vector3( 0.7,0.7,0.7 ) },
+	roughnessMap: { type: "t", value: roughnessMapPlastic },
+	diffuseMap: { type: "t", value: diffuseMapPlastic },
+	specularMap: { type: "t", value: specularMapPlastic },
+	normalMap: { type: "t", value: normalMapPlastic },
+	irradianceMap: { type: "t", value: irradianceMap }
+};
+
+var uniforms_thing_night = {
+	pointLightPosition:	{ type: "v3", value: new THREE.Vector3( 0.0, 0.0, 0.0 ) },
+	clight:	{ type: "v3", value: new THREE.Vector3( 0.7,0.7,0.7 ) },
+	roughnessMap: { type: "t", value: roughnessMapThing },
+	diffuseMap: { type: "t", value: diffuseMapThing },
+	specularMap: { type: "t", value: specularMapThing },
+	normalMap: { type: "t", value: normalMapThing },
+	irradianceMap: { type: "t", value: irradianceMap }
+};
+
+var uniforms_metal=uniforms_metal_day;
+var uniforms_wood=uniforms_wood_day;
+var uniforms_plastic=uniforms_plastic_day;
+var uniforms_thing=uniforms_thing_day;
+
 var glassBody = [];
 var glassLenses = [];
 
 var mirrorNormalMap = new THREE.TextureLoader().load('./texture/glassNormal.jpg');
 
-var uniformsMirror = {
+var uniformsMirrorDay = {
 	cspec:	{ type: "v3", value: new THREE.Vector3(0.6,0.6,0.6) },
 	envMap:	{ type: "t", value: textureCube},
 	normalMap:	{ type: "t", value: mirrorNormalMap},
 };
 
-var uniformsGlass = {
+var uniformsGlassDay = {
 	cspec:	{ type: "v3", value: new THREE.Vector3(12.0/255.0,12.0/255.0,12.0/255.0) },
 	envMap:	{ type: "t", value: textureCube},
 	normalMap:	{ type: "t", value: mirrorNormalMap},
 }
+
+var uniformsMirrorNight = {
+	cspec:	{ type: "v3", value: new THREE.Vector3(0.6,0.6,0.6) },
+	envMap:	{ type: "t", value: textureCube2},
+	normalMap:	{ type: "t", value: mirrorNormalMap},
+};
+
+var uniformsGlassNight = {
+	cspec:	{ type: "v3", value: new THREE.Vector3(12.0/255.0,12.0/255.0,12.0/255.0) },
+	envMap:	{ type: "t", value: textureCube2},
+	normalMap:	{ type: "t", value: mirrorNormalMap},
+}
+
+var uniformsGlass=uniformsGlassDay;
+
+var uniformsMirror=uniformsMirrorDay;
 
 function Start() {
 
@@ -143,26 +204,47 @@ function Start() {
 	fsGlass = document.getElementById("fragmentGlass").textContent;
 
 	loadObj();
-	var lightMesh = new THREE.Mesh( new THREE.SphereGeometry(1, 16, 16), new THREE.MeshBasicMaterial ({color: 0xffff00, wireframe:true}));
-	lightMesh.position.set( -30.0, 31.0, 5 );
+	var dayLightMesh = new THREE.Mesh( new THREE.SphereGeometry(1, 16, 16), new THREE.MeshBasicMaterial ({color: 0xffff00, wireframe:true}));
+	dayLightMesh.position.set( -30.0, 31.0, 5 );
 	
-	uniforms_metal.pointLightPosition.value = new THREE.Vector3(lightMesh.position.x,
-		lightMesh.position.y,
-		lightMesh.position.z);
+	var moonLightMesh = new THREE.Mesh( new THREE.SphereGeometry(1, 16, 16), new THREE.MeshBasicMaterial ({color: 0xffff00, wireframe:true}));
+	moonLightMesh.position.set( -12, 33.0, 35 );
+	
+	uniforms_metal_day.pointLightPosition.value = new THREE.Vector3(dayLightMesh.position.x,
+		dayLightMesh.position.y,
+		dayLightMesh.position.z);
 		
-	uniforms_wood.pointLightPosition.value = new THREE.Vector3(lightMesh.position.x,
-		lightMesh.position.y,
-		lightMesh.position.z);
+	uniforms_wood_day.pointLightPosition.value = new THREE.Vector3(dayLightMesh.position.x,
+		dayLightMesh.position.y,
+		dayLightMesh.position.z);
 		
-	uniforms_plastic.pointLightPosition.value = new THREE.Vector3(lightMesh.position.x,
-		lightMesh.position.y,
-		lightMesh.position.z);
+	uniforms_plastic_day.pointLightPosition.value = new THREE.Vector3(dayLightMesh.position.x,
+		dayLightMesh.position.y,
+		dayLightMesh.position.z);
 		
-	uniforms_thing.pointLightPosition.value = new THREE.Vector3(lightMesh.position.x,
-		lightMesh.position.y,
-		lightMesh.position.z);
+	uniforms_thing_day.pointLightPosition.value = new THREE.Vector3(dayLightMesh.position.x,
+		dayLightMesh.position.y,
+		dayLightMesh.position.z);
+		
+	uniforms_metal_night.pointLightPosition.value = new THREE.Vector3(moonLightMesh.position.x,
+		moonLightMesh.position.y,
+		moonLightMesh.position.z);
+		
+	uniforms_wood_night.pointLightPosition.value = new THREE.Vector3(moonLightMesh.position.x,
+		moonLightMesh.position.y,
+		moonLightMesh.position.z);
+		
+	uniforms_plastic_night.pointLightPosition.value = new THREE.Vector3(moonLightMesh.position.x,
+		moonLightMesh.position.y,
+		moonLightMesh.position.z);
+		
+	uniforms_thing_night.pointLightPosition.value = new THREE.Vector3(moonLightMesh.position.x,
+		moonLightMesh.position.y,
+		moonLightMesh.position.z);
 
-	//scene.add(lightMesh);
+	//scene.add(dayLightMesh);
+	
+	//scene.add(moonLightMesh);
 
 	/*stats = new Stats();
 	stats.domElement.style.position = 'absolute';
@@ -264,5 +346,25 @@ function switchLenses(reflective){
 		glassLenses[i].material=new THREE.ShaderMaterial({ uniforms: uniform, vertexShader: vsLenses, fragmentShader: fsLenses });
 		glassLenses[i].geometry.vertexTangents = true;
 		glassLenses[i].geometry.needsUpdate = true;
+	}
+}
+
+function switchBackground(n){
+	if(n==0){
+		scene.background=textureCube;
+		uniformsGlass=uniformsGlassDay;
+		uniformsMirror=uniformsMirrorDay;
+		uniforms_metal=uniforms_metal_day;
+		uniforms_wood=uniforms_wood_day;
+		uniforms_plastic=uniforms_plastic_day;
+		uniforms_thing=uniforms_thing_day;
+	}else{
+		scene.background=textureCube2;
+		uniformsGlass=uniformsGlassNight;
+		uniformsMirror=uniformsMirrorNight;
+		uniforms_metal=uniforms_metal_night;
+		uniforms_wood=uniforms_wood_night;
+		uniforms_plastic=uniforms_plastic_night;
+		uniforms_thing=uniforms_thing_night;
 	}
 }
