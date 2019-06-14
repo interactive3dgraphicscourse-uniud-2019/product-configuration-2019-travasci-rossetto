@@ -72,7 +72,7 @@ var uniforms_wood_day = {
 	specularMap: { type: "t", value: specularMapWood },
 	normalMap: { type: "t", value: normalMapWood },
 	irradianceMap: { type: "t", value: irradianceMap },
-	alight: { type: "v3", value: new THREE.Vector3( 0.02, 0.02, 0.02 ) }
+	alight: { type: "v3", value: new THREE.Vector3( 0.015, 0.015, 0.015 ) }
 };
 
 var uniforms_plastic_day = {
@@ -116,7 +116,7 @@ var uniforms_wood_night = {
 	specularMap: { type: "t", value: specularMapWood },
 	normalMap: { type: "t", value: normalMapWood },
 	irradianceMap: { type: "t", value: irradianceMap },
-	alight: { type: "v3", value: new THREE.Vector3( 0.005, 0.005, 0.005 ) }
+	alight: { type: "v3", value: new THREE.Vector3( 0.002, 0.002, 0.002 ) }
 };
 
 var uniforms_plastic_night = {
@@ -127,7 +127,7 @@ var uniforms_plastic_night = {
 	specularMap: { type: "t", value: specularMapPlastic },
 	normalMap: { type: "t", value: normalMapPlastic },
 	irradianceMap: { type: "t", value: irradianceMap },
-	alight: { type: "v3", value: new THREE.Vector3( 0.005, 0.005, 0.005 ) }
+	alight: { type: "v3", value: new THREE.Vector3( 0.002, 0.002, 0.002 ) }
 };
 
 var uniforms_thing_night = {
