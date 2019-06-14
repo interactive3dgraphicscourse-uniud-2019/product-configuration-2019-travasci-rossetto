@@ -9,20 +9,30 @@ var normalMapMetal = new THREE.TextureLoader().load('./texture/Metal_Bare_se2abb
 var loader = new THREE.CubeTextureLoader();
 	loader.setPath( 'images/Standard-Cube-Map/' );
 
+// daylight cube map
 var textureCube = loader.load( [
 	'px.png', 'nx.png',
 	'py.png', 'ny.png',
 	'pz.png', 'nz.png'
 ] );
 
-var iloader = new THREE.CubeTextureLoader();
-	iloader.setPath( 'images/Irradiance-Map/' );
+var loader = new THREE.CubeTextureLoader().setPath( 'images/Irradiance-Map/' );
 
-var irradianceMap = iloader.load( [
+var irradianceMap = loader.load( [
 	'px.png', 'nx.png',
 	'py.png', 'ny.png',
 	'pz.png', 'nz.png'
 ] );
+
+loader = new THREE.CubeTextureLoader().setPath( 'images/Moonlight-Cube-Map/');
+
+// Moonlight cube map
+var textureCube2 = loader.load( [
+	'px.png', 'nx.png',
+	'py.png', 'ny.png',
+	'pz.png', 'nz.png'
+] );
+
 
 //Wood texture (material #2)
 var diffuseMapWood = new THREE.TextureLoader().load('./texture/[4K]Wood16/Wood16_col.jpg');
@@ -121,7 +131,7 @@ function Start() {
 		'pz.png', 'nz.png'
 	] );
 
-	scene.background = textureCube;
+	scene.background = textureCube;				// needs to be intechangeable
 
 	vs = document.getElementById("vertex").textContent;
 	fs = document.getElementById("fragment").textContent;

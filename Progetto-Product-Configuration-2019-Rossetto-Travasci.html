@@ -277,7 +277,7 @@
 	uniform sampler2D normalMap;
 	uniform samplerCube envMap;
 	const float PI = 3.14159;
-	const float eta = 1.0 / 1.5;
+	const float eta = 1.0 / 1.4;
 	vec3 FSchlick(float lDoth) {
 		return (cspec + (vec3(1.0)-cspec)*pow(1.0 - lDoth,5.0));
 	}		
