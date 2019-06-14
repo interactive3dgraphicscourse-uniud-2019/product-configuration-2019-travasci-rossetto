@@ -104,8 +104,8 @@ Aggiunto un pulsante per cambiare il tipo delle lenti da quelle riflettenti a qu
 
 - Stefano Travasci
 
-## Cambiamento tra i tipi di lente
-``11.06.2019 - 5:12```
+## Irradiance map
+```11.06.2019 - 5:12```
 
 Aggiunta una possibile implementazione di Irradiance map con una cubetexture pre-computata.
 
