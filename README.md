@@ -2,7 +2,7 @@
 
 Nel nostro progetto abbiamo realizzato un sito di e-commerce immaginario per la vendita di occhiali da sole. Nel sito sono presenti descrizioni, recensioni e una zona dove viene fornita un'anteprima degli occhiali scelti. I materiali della montatura e il tipo delle lenti possono essere scelti tra varie alternative; gli occhiali dell'anteprima cambieranno in base a queste scelte.
 
--- immagine rappresentativa --
+![Pagina finale](https://raw.githubusercontent.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/master/screenshots/pagina%20finale.png)
 
 Il file principale è `Progetto-Product-Configuration-2019-Rossetto-Travasci.html`. Vengono utilizzate le librerie `three.min.js`, `stats.min.js`, `OrbitControls.js`, `GLTFLoader.js`, `LoaderSupport.js`, `BufferGeometryUtils.js` tutte contenute nella cartella `/libs`. 
 Il resto delle cartelle del progetto è invece diviso in:
