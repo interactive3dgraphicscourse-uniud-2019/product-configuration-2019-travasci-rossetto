@@ -55,7 +55,7 @@ var aoMapThing = new THREE.TextureLoader().load('./texture/Creature_Skin_rmugyqp
 
 var uniforms_metal_day = {
 	pointLightPosition:	{ type: "v3", value: new THREE.Vector3() },
-	clight:	{ type: "v3", value: new THREE.Vector3( 1.0,1.0,1.0 ) },
+	clight:	{ type: "v3", value: new THREE.Vector3( 0.945, 0.855, 0.643 ) },
 	roughnessMap: { type: "t", value: roughnessMapMetal },
 	diffuseMap: { type: "t", value: diffuseMapMetal },
 	specularMap: { type: "t", value: specularMapMetal },
@@ -66,18 +66,18 @@ var uniforms_metal_day = {
 
 var uniforms_wood_day = {
 	pointLightPosition:	{ type: "v3", value: new THREE.Vector3( 0.0, 0.0, 0.0 ) },
-	clight:	{ type: "v3", value: new THREE.Vector3( 0.98,0.98,0.98 ) },
+	clight:	{ type: "v3", value: new THREE.Vector3( 0.945, 0.855, 0.643 ) },
 	roughnessMap: { type: "t", value: roughnessMapWood },
 	diffuseMap: { type: "t", value: diffuseMapWood },
 	specularMap: { type: "t", value: specularMapWood },
 	normalMap: { type: "t", value: normalMapWood },
 	irradianceMap: { type: "t", value: irradianceMap },
-	alight: { type: "v3", value: new THREE.Vector3( 0.015, 0.015, 0.015 ) }
+	alight: { type: "v3", value: new THREE.Vector3( 0.01, 0.01, 0.01 ) }
 };
 
 var uniforms_plastic_day = {
 	pointLightPosition:	{ type: "v3", value: new THREE.Vector3( 0.0, 0.0, 0.0 ) },
-	clight:	{ type: "v3", value: new THREE.Vector3( 0.98,0.98,0.98 ) },
+	clight:	{ type: "v3", value: new THREE.Vector3( 0.945, 0.855, 0.643 ) },
 	roughnessMap: { type: "t", value: roughnessMapPlastic },
 	diffuseMap: { type: "t", value: diffuseMapPlastic },
 	specularMap: { type: "t", value: specularMapPlastic },
@@ -88,7 +88,7 @@ var uniforms_plastic_day = {
 
 var uniforms_thing_day = {
 	pointLightPosition:	{ type: "v3", value: new THREE.Vector3( 0.98,0.98,0.98 ) },
-	clight:	{ type: "v3", value: new THREE.Vector3( 1.0, 1.0, 1.0 ) },
+	clight:	{ type: "v3", value: new THREE.Vector3( 0.945, 0.855, 0.643 ) },
 	roughnessMap: { type: "t", value: roughnessMapThing },
 	diffuseMap: { type: "t", value: diffuseMapThing },
 	specularMap: { type: "t", value: specularMapThing },
