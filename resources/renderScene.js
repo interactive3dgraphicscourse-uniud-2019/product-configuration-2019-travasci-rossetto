@@ -16,14 +16,6 @@ var textureCube = loader.load( [
 	'pz.png', 'nz.png'
 ] );
 
-var loader = new THREE.CubeTextureLoader().setPath( 'images/Irradiance-Map/' );
-
-var irradianceMap = loader.load( [
-	'px.png', 'nx.png',
-	'py.png', 'ny.png',
-	'pz.png', 'nz.png'
-] );
-
 loader = new THREE.CubeTextureLoader().setPath( 'images/Moonlight-Cube-Map/');
 
 // Moonlight cube map
@@ -60,7 +52,6 @@ var uniforms_metal_day = {
 	diffuseMap: { type: "t", value: diffuseMapMetal },
 	specularMap: { type: "t", value: specularMapMetal },
 	normalMap: { type: "t", value: normalMapMetal },
-	irradianceMap: { type: "t", value: irradianceMap },
 	alight: { type: "v3", value: new THREE.Vector3( 0.0, 0.0, 0.0 ) }
 };
 
@@ -71,7 +62,6 @@ var uniforms_wood_day = {
 	diffuseMap: { type: "t", value: diffuseMapWood },
 	specularMap: { type: "t", value: specularMapWood },
 	normalMap: { type: "t", value: normalMapWood },
-	irradianceMap: { type: "t", value: irradianceMap },
 	alight: { type: "v3", value: new THREE.Vector3( 0.01, 0.01, 0.01 ) }
 };
 
@@ -82,7 +72,6 @@ var uniforms_plastic_day = {
 	diffuseMap: { type: "t", value: diffuseMapPlastic },
 	specularMap: { type: "t", value: specularMapPlastic },
 	normalMap: { type: "t", value: normalMapPlastic },
-	irradianceMap: { type: "t", value: irradianceMap },
 	alight: { type: "v3", value: new THREE.Vector3( 0.02, 0.02, 0.02 ) }
 };
 
@@ -93,7 +82,6 @@ var uniforms_thing_day = {
 	diffuseMap: { type: "t", value: diffuseMapThing },
 	specularMap: { type: "t", value: specularMapThing },
 	normalMap: { type: "t", value: normalMapThing },
-	irradianceMap: { type: "t", value: irradianceMap },
 	alight: { type: "v3", value: new THREE.Vector3( 0.02, 0.02, 0.02 ) }
 };
 
@@ -104,7 +92,6 @@ var uniforms_metal_night = {
 	diffuseMap: { type: "t", value: diffuseMapMetal },
 	specularMap: { type: "t", value: specularMapMetal },
 	normalMap: { type: "t", value: normalMapMetal },
-	irradianceMap: { type: "t", value: irradianceMap },
 	alight: { type: "v3", value: new THREE.Vector3( 0.0, 0.0, 0.0 ) }
 };
 
@@ -115,7 +102,6 @@ var uniforms_wood_night = {
 	diffuseMap: { type: "t", value: diffuseMapWood },
 	specularMap: { type: "t", value: specularMapWood },
 	normalMap: { type: "t", value: normalMapWood },
-	irradianceMap: { type: "t", value: irradianceMap },
 	alight: { type: "v3", value: new THREE.Vector3( 0.002, 0.002, 0.002 ) }
 };
 
@@ -126,7 +112,6 @@ var uniforms_plastic_night = {
 	diffuseMap: { type: "t", value: diffuseMapPlastic },
 	specularMap: { type: "t", value: specularMapPlastic },
 	normalMap: { type: "t", value: normalMapPlastic },
-	irradianceMap: { type: "t", value: irradianceMap },
 	alight: { type: "v3", value: new THREE.Vector3( 0.002, 0.002, 0.002 ) }
 };
 
@@ -137,7 +122,6 @@ var uniforms_thing_night = {
 	diffuseMap: { type: "t", value: diffuseMapThing },
 	specularMap: { type: "t", value: specularMapThing },
 	normalMap: { type: "t", value: normalMapThing },
-	irradianceMap: { type: "t", value: irradianceMap },
 	alight: { type: "v3", value: new THREE.Vector3( 0.005, 0.005, 0.005 ) }
 };
 
