@@ -1,2 +1,0 @@
-- La gerarchia delle geometrie è così definita: children[0] = montatura, children[1] = lente sx, children[2] = lente dx
-- implementare attenuazione
