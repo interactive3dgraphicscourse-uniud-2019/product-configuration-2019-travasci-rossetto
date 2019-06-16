@@ -5,7 +5,7 @@ Nel nostro progetto abbiamo realizzato un falso sito di e-commerce per la vendit
 -- immagine rappresentativa --
 
 Il file principale è `Progetto-Product-Configuration-2019-Rossetto-Travasci.html`. Vengono utilizzate le librerie `three.min.js`, `stats.min.js`, `OrbitControls.js`, `GLTFLoader.js`, `LoaderSupport.js`, `BufferGeometryUtils.js` tutte contenute nella cartella `/libs`. 
-Il resto delle cartelle contiene invece:
+Il resto delle cartelle del progetto è invece diviso in:
 - `/images` contiene le cube-map e le immagini per le icone del sito,
 - `/models` contiene il modello in formato .gltf degli occhiali,
 - `/texture` contiene tutte le texture usate per i vari materiali (opportunatamente divise),
