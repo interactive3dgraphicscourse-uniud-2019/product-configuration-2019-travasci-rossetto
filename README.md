@@ -9,7 +9,7 @@ Il resto delle cartelle del progetto è invece diviso in:
 - `/images` contiene le cube-map e le immagini e le icone del sito,
 - `/models` contiene il modello in formato .gltf degli occhiali,
 - `/texture` contiene tutte le texture usate per i vari materiali (opportunatamente divise),
-- `/resources` contiene il file `style.css` della pagina  e il file `renderScene.js` che contiene il codice per implementare il render della scena all'interno del canvas d'anteprima.
+- `/resources` contiene il file `style.css` della pagina e il file `renderScene.js` che contiene il codice per implementare il render della scena all'interno del canvas d'anteprima.
 
 Lo spostamento all'interno del canvas contenente l'anteprima è gestito dai controlli definiti in `OrbitControls.js`, con delle piccole modifiche. Innanzitutto, la "rotellina" del mouse ha l'effetto definito in `OrbitControls.js` solo quando il cursore si trova all'interno del canvas, altrimenti ha il classico effetto di scorrimento della pagina web. Inoltre, la camera virtuale gira autonomamente intorno al modello degli occhiali fino a quando non si clicca sul canvas.
 
@@ -28,20 +28,20 @@ Grazie all'ultimo pulsante è possibile cambiare l'ambientazione della scena, in
 
 L'implementazione delle varie equazioni di rendering segue pari passo quelle introdotte a lezione. 
 
-Per i materiali della montatura (metallo, legno e plastica) si è implementata la formula generale per la microfacet BRDF ( **Cook-Torrance** ). I valori utilizzati nello shading, quali `cdiff`, `cspec` e `roughness` sono estrapolati dalle rispettive texture scaricate. E' stata inoltre aggiunta una debole luce ambientale costante.
-Negli `uniform` dei materiali vengono passati, oltre alle varie texture, come valori costanti i vec3 di:
+Per i materiali della montatura (metallo, legno e plastica) si è implementata la formula generale per la microfacet BRDF (**Cook-Torrance**). I valori utilizzati nello shading, quali `cdiff`, `cspec` e `roughness` sono estrapolati dalle rispettive texture scaricate. È stata inoltre aggiunta una debole luce ambientale costante.
+Negli `uniform` dei materiali vengono passati, oltre alle varie texture, i seguenti vec3 come valori costanti:
 
 - `clight`
 - `alight`, per l'illuminazione ambientale
 
-Rispetto alla enviroment map attualmente in utilizzo ci saranno diversi valori scelti in base alla diversa situazione.
-
+Rispetto alla environment map attualmente in utilizzo ci saranno diversi valori scelti in base alla diversa situazione.
 
 Per le lenti si è dovuta utilizzare una soluzione diversa in base alla tipologia di lente, ognuna con il proprio shader.
-L'implementazione delle *lenti riflettenti* segue quella esposta a lezione per il reflection mapping utilizzando una enviroment map e una normal map per donare una maggiore fedeltà visiva. Per le *lenti opache* si è implementata una soluzione che vede l'utilizzo di un vettore di rifrazione (utilizzando propriamente il metodo `refract` fornitoci con l'API di WebGL e utilizzando come indice di rifrazione del vetro un valore pari a 1.4), invece del vettore di riflessione
-Negli `uniform` delle lenti vengono passate le texture della enviromentmap e della normalmap in aggiunta al valore costante prefissato in base al tipo di scena in utilizzo (giorno/notte).
+L'implementazione delle *lenti riflettenti* segue quella esposta a lezione per il reflection mapping utilizzando una environment map e una normal map per donare una maggiore fedeltà visiva. Per le *lenti opache* si è implementata una soluzione che vede l'utilizzo di un vettore di rifrazione (realizzato utilizzando il metodo `refract` fornitoci con l'API di WebGL e utilizzando come indice di rifrazione del vetro un valore pari a 1.4), invece del vettore di riflessione.
+Negli `uniform` delle lenti vengono passate le texture della environmentmap e della normalmap in aggiunta al valore costante prefissato in base al tipo di scena in utilizzo (giorno/notte).
 
-Le texture utilizzate come enviroment map sono tutte foto a 360° in formato HDRI, convertite in cube map e salvate come file PNG per sfruttare lo spazio colore sRGB.
+Le texture utilizzate come environment map sono tutte foto a 360° in formato HDRI, convertite in cube map e salvate come file PNG.
+
 ## Risorse utilizzate
 
 Il modello 3D è stato preso da:
@@ -51,7 +51,7 @@ Le texture sono state prese da:
 - https://www.cc0textures.com
 - https://quixel.com/megascans/library/
 
-Le enviroment maps sono state scaricate da: 
+Le environment maps sono state scaricate da: 
 - https://hdrihaven.com
 
-e convertite appositamente in *cube-map* tramite il tool presente in https://matheowis.github.io/HDRI-to-CubeMap/.
+e convertite in *cube-map* tramite il tool presente in https://matheowis.github.io/HDRI-to-CubeMap/.
