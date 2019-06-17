@@ -38,7 +38,7 @@ Rispetto alla enviroment map attualmente in utilizzo ci saranno diversi valori s
 
 
 Per le lenti si è dovuta utilizzare una soluzione diversa in base alla tipologia di lente, ognuna con il proprio shader.
-L'implementazione delle *lenti riflettenti* segue quella esposta a lezione per il reflection mapping utilizzando una enviroment map e una normal map per donare una maggiore fedeltà visiva. Per le *lenti opache* si è implementata una solzuione che vede l'utilizzo di un vettore di rifrazione (utilizzando propriamente il metodo `refract` fornitoci con l'API di WebGL e utilizzando come indice di rifrazione del vetro un valore pari a 1.4), invece di riflessione, nel calcolo della radianza estratta dalla enviroment mapping.
+L'implementazione delle *lenti riflettenti* segue quella esposta a lezione per il reflection mapping utilizzando una enviroment map e una normal map per donare una maggiore fedeltà visiva. Per le *lenti opache* si è implementata una soluzione che vede l'utilizzo di un vettore di rifrazione (utilizzando propriamente il metodo `refract` fornitoci con l'API di WebGL e utilizzando come indice di rifrazione del vetro un valore pari a 1.4), invece del vettore di riflessione
 Negli `uniform` delle lenti vengono passate le texture della enviromentmap e della normalmap in aggiunta al valore costante prefissato in base al tipo di scena in utilizzo (giorno/notte).
 
 Le texture utilizzate come enviroment map sono tutte foto a 360° in formato HDRI, convertite in cube map e salvate come file PNG per sfruttare lo spazio colore sRGB.
