@@ -44,4 +44,14 @@ Negli `uniform` delle lenti vengono passate le texture della enviromentmap e del
 Le texture utilizzate come enviroment map sono tutte foto a 360° in formato HDRI, convertite in cube map e salvate come file PNG per sfruttare lo spazio colore sRGB.
 ## Risorse utilizzate
 
--- da fare --
+Il modello 3D è stato preso da:
+- https://www.blendswap.com/blends/view/70347 sotto licenza **CC-BY**
+
+Le texture sono state prese da:
+- https://www.cc0textures.com
+- https://quixel.com/megascans/library/
+
+Le enviroment maps sono state scaricate da: 
+- https://hdrihaven.com
+
+e convertite appositamente in *cube-map* tramite il tool presente in https://matheowis.github.io/HDRI-to-CubeMap/.
