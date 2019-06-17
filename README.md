@@ -26,6 +26,22 @@ Grazie all'ultimo pulsante è possibile cambiare l'ambientazione della scena, in
 
 # Processo di sviluppo
 
+L'implementazione delle varie equazioni di rendering segue pari passo quelle introdotte a lezione. 
+
+Per i materiali della montatura (metallo, legno e plastica) si è implementata la formula generale per la microfacet BRDF ( **Cook-Torrance** ). I valori utilizzati nello shading, quali `cdiff`, `cspec` e `roughness` sono estrapolati dalle rispettive texture scaricate. E' stata inoltre aggiunta una debole luce ambientale costante.
+Negli `uniform` dei materiali vengono passati, oltre alle varie texture, come valori costanti i vec3 di:
+
+- `clight`
+- `alight`, per l'illuminazione ambientale
+
+Rispetto alla enviroment map attualmente in utilizzo ci saranno diversi valori scelti in base alla diversa situazione.
+
+
+Per le lenti si è dovuta utilizzare una soluzione diversa in base alla tipologia di lente, ognuna con il proprio shader.
+L'implementazione delle lenti riflettenti segue quella esposta a lezione per il reflection mapping utilizzando una enviroment map e una normal map per donare una maggiore fedeltà visiva. Per il refraction mapping si è implementata una solzuione che vede l'utilizzo di un vettore di rifrazione (utilizzando propriamente il metodo `refract` fornitoci con l'API di WebGL e utilizzando come indice di rifrazione del vetro un valore pari a 1.4), invece di riflessione, nel calcolo della radianza estratta dalla enviroment mapping.
+Negli `uniform` delle lenti vengono passate le texture della enviromentmap e della normalmap in aggiunta al valore costante prefissato in base al tipo di scena in utilizzo (giorno/notte).
+
+Le texture utilizzate come enviroment map sono tutte foto a 360° in formato HDRI, convertite in cube map e salvate come file PNG per sfruttare lo spazio colore sRGB.
 ## Risorse utilizzate
 
 -- da fare --
