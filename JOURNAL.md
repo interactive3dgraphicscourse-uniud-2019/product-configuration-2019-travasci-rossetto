@@ -128,3 +128,12 @@ Aggiunta una semplice debole illuminazione ambientale.
 ![Nuovo sfondo](https://github.com/interactive3dgraphicscourse-uniud-2019/product-configuration-2019-travasci-rossetto/blob/master/screenshots/illuminazione%20ambientale.PNG)
 
 - Stefano Travasci
+
+## Completata la versione finale della relazione
+```18.06.2019 - 00:44```
+
+Completata la versione finale della relazione.
+
+
+- Eric Rossetto
+- Stefano Travasci
